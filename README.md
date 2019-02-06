@@ -7,7 +7,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-=======
 # Pampatec Manager
 System developed in Laravel 5.5 and PHP 7.2.10 for web with the intention to manage business plans.
 
