@@ -36,7 +36,13 @@ System developed in Laravel 5.5 and PHP 7.2.10 for web with the intention to man
     password: @TODO
     ```
     ```
-    Avaliador
+    Avaliador 1
+    name: @TODO
+    login: @TODO
+    password: @TODO
+    ```
+    ```
+    Avaliador 2
     name: @TODO
     login: @TODO
     password: @TODO
