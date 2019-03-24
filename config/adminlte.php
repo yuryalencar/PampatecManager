@@ -123,7 +123,7 @@ return [
         ],
         'ACCOUNT SETTINGS',
         [
-            'text' => 'Profile',
+            'text' => 'Role',
             'url'  => 'admin/settings',
             'icon' => 'user',
         ],

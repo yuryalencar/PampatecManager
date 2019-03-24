@@ -41,6 +41,21 @@ return [
             'provider' => 'users',
         ],
 
+        'manager' => [
+            'driver' => 'session',
+            'provider' => 'managers',
+        ],
+
+        'evaluator' => [
+            'driver' => 'session',
+            'provider' => 'evaluators',
+        ],
+
+        'entrepreneur' => [
+            'driver' => 'session',
+            'provider' => 'entrepreneurs',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -67,7 +82,22 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
+        ],
+
+        'managers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+
+        'evaluators' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+
+        'entrepreneurs' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [
@@ -94,6 +124,21 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'managers' => [
+            'provider' => 'managers',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'evaluators' => [
+            'provider' => 'evaluators',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'entrepreneurs' => [
+            'provider' => 'entrepreneurs',
             'table' => 'password_resets',
             'expire' => 60,
         ],
