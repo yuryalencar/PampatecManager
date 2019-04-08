@@ -7,5 +7,15 @@
 @stop
 
 @section('content')
-    <p>You are logged in!</p>
+    @can('authorization','manager')
+        Olá Gerente
+    @endcan
+
+    @can('authorization','evaluator')
+        Olá Avaliador
+    @endcan
+
+    @can('authorization','entrepreneur')
+        Olá Empreendedor
+    @endcan
 @stop
