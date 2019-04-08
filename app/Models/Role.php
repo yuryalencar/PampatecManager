@@ -12,6 +12,11 @@ class Role extends Model
 
     public static $superUser = "#system.root#";
 
+    public static function getSuperUser()
+    {
+        return self::where("name", self::$superUser)->first();
+    }
+
     public function scopeNotSuperProfile($query)
     {
         return $query->where('name', '<>', self::$superUser);
