@@ -1,8 +1,8 @@
-@extends('adminlte::page')
+@extends('layouts.base')
 
 @section('title', 'AdminLTE')
 
-@section('content_header')
+@section('header')
     <h1>Dashboard</h1>
 @stop
 
