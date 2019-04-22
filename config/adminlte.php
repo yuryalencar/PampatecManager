@@ -187,10 +187,13 @@ return [
         [
             'text' => 'Novo Plano',
             'url' => 'plano/novoplano',
+            'icon' => 'plus'
 //            'can'  => 'entrepreneur',
         ],
         [
             'text' => 'Planos Existentes',
+            'url' => '',
+            'icon' => ''
 //            'can'  => 'entrepreneur',
         ],
     ],
