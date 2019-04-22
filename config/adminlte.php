@@ -183,6 +183,16 @@ return [
             'text'       => 'Information',
             'icon_color' => 'aqua',
         ],
+        'PLANO DE NEGÓCIO',
+        [
+            'text' => 'Novo Plano',
+            'url' => 'plano/novoplano',
+//            'can'  => 'entrepreneur',
+        ],
+        [
+            'text' => 'Planos Existentes',
+//            'can'  => 'entrepreneur',
+        ],
     ],
 
     /*
