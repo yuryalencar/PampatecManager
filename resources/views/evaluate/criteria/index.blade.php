@@ -2,55 +2,19 @@
 
 @section('title', 'Critérios de Avaliação')
 
-@push('script')
-
-@endpush
-
 @section('content_header')
     <h1>Critérios de Avaliação</h1>
 @stop
 
 @section('content')
-    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.js">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js">
-    <script>
-        window.onload = initDataTable;
-
-        function initDataTable() {
-            $('.table').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false
-            });
-        }
-
-        console.log('dksadposa');
-    </script>
-
-    @can('authorization','manager')
-        Usuário Autenticado: Gerente
-    @endcan
-
-    @can('authorization','evaluator')
-        Usuário Autenticado: Avaliador
-    @endcan
-
-    @can('authorization','entrepreneur')
-        Usuário Autenticado: Empreendedor
-    @endcan
-    <br/>
-    <br/>
-    <br/>
+    <h5><b>Regra de Aceitação</b></h5>
+    <p>Serão desclassificados os projetos que não atingirem 50% (cinquenta por cento) da pontuação individual de cada critério ou não atingirem 50%(cinquenta por cento) da pontuação máxima total.</p>
 
     <table class="table table-bordered table-hover">
         <thead>
         <tr>
             <th>Título</th>
-            <th>Criado por</th>
+            <th>Pontuação Máxima</th>
             <th>Opções</th>
         </tr>
         </thead>
@@ -58,7 +22,7 @@
         @foreach($criterias as $criteria)
             <tr>
                 <td>{{$criteria->title}}</td>
-                <td>{{$criteria->user()->first()->name}}</td>
+                <td>{{$criteria->score}}</td>
                 <td>
                     <div class="btn-group">
                         <form action="#" method="POST" style="display: inline">

@@ -17,6 +17,7 @@ class CreateEvaluateCriteriasTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('description')->nullable();
+            $table->integer('score');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestampsTz();
