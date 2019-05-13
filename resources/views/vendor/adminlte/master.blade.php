@@ -15,6 +15,9 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/Ionicons/css/ionicons.min.css') }}">
 
+    <script type="text/javascript" src="{{ mix('/assets/js/app.js') }}"></script>
+    <script src="/js/global.js"></script>
+
     @if(config('adminlte.plugins.select2'))
         <!-- Select2 -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css">

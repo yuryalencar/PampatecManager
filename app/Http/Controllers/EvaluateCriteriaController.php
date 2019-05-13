@@ -27,8 +27,7 @@ class EvaluateCriteriaController extends Controller
      */
     public function create()
     {
-//        $allLevels = Level::all();
-//        return view('manager.helpdesk.categories.form', compact('allLevels'));
+        return view('evaluate.criteria.form');
     }
 
     /**

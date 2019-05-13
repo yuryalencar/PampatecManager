@@ -3,7 +3,8 @@
 @section('title', 'Critérios de Avaliação')
 
 @section('content_header')
-    <h1>Critérios de Avaliação</h1>
+    <h1 class="inline">Critérios de Avaliação</h1>
+    <a class="btn btn-primary inline pull-right" href="{{route('evaluate.criteria.create')}}"><i class="fa fa-plus" aria-hidden="true"></i> Novo Critério</a>
 @stop
 
 @section('content')
