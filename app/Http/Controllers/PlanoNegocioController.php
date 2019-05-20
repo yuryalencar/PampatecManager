@@ -2,28 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BusinessPlan;
 use App\Models\PlanoNegocio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PlanoNegocioController extends Controller
 {
-    public function novoplano(){
+    public function novoplano()
+    {
         return view('plano_de_negocio/novoplano');
     }
 
-    public function salvar(Request $request){
- //       dd($request);
+    public function salvar(Request $request)
+    {
+//        dd($request);
 
         $plano = $request->except('_token');
 
-       // dd($plano);
         DB::beginTransaction();
-
-
-
+        $planResult = BusinessPlan::create(['name' => 'example']);
+//        dd($planResult);
         try {
-            $planResult = PlanoNegocio::create($plano);
+//            $planResult = PlanoNegocio::create(['customerSegment' => 'example']);
         } catch (\Exception $e) {
             DB::rollback();
             return Helper::throwError(Helper::msg("error.save"));
