@@ -4,19 +4,22 @@
 
 @section('content_header')
     <h1 class="inline">Critérios de Avaliação</h1>
-    <a class="btn btn-primary inline pull-right" href="{{route('evaluate.criteria.create')}}"><i class="fa fa-plus" aria-hidden="true"></i> Novo Critério</a>
+    <a class="btn btn-primary inline pull-right" href="{{route('evaluate.criteria.create')}}"><i class="fa fa-plus"
+                                                                                                 aria-hidden="true"></i>
+        Novo Critério</a>
 @stop
 
 @section('content')
     <h5><b>Regra de Aceitação</b></h5>
-    <p>Serão desclassificados os projetos que não atingirem 50% (cinquenta por cento) da pontuação individual de cada critério ou não atingirem 50%(cinquenta por cento) da pontuação máxima total.</p>
+    <p>Serão desclassificados os projetos que não atingirem 50% (cinquenta por cento) da pontuação individual de cada
+        critério ou não atingirem 50%(cinquenta por cento) da pontuação máxima total.</p>
 
-    <table class="table table-bordered table-hover" onload="initDataTable()">
+    <table class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th>Título</th>
-            <th>Pontuação Máxima</th>
-            <th>Opções</th>
+            <th class="td-title">Título</th>
+            <th class="td-title">Pontuação Máxima</th>
+            <th class="td-title">Opções</th>
         </tr>
         </thead>
         <tbody>

@@ -18,6 +18,7 @@
     <link rel="stylesheet"  href="{{ mix('/assets/css/app.css') }}"></link>
 
     <script type="text/javascript" src="{{ mix('/assets/js/app.js') }}"></script>
+    <link rel="stylesheet" href="/css/global.css">
     <script src="/js/global.js"></script>
 
     @if(config('adminlte.plugins.select2'))
