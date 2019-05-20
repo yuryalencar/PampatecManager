@@ -27,7 +27,7 @@
             if(document.getElementsByClassName('table').item(0) != null){
                 $('.table').DataTable({
                     "paging": true,
-                    "lengthChange": true,
+                    "lengthChange": false,
                     "searching": true,
                     "ordering": true,
                     "info": true,
@@ -159,7 +159,19 @@
 
                     <!-- Main content -->
                     <section class="content">
+                        @if(!empty($errors->first()))
+                            <div class="row col-lg-12">
+                                <div class="alert alert-danger">
+                                    <span>{{ $errors->first() }}</span>
+                                </div>
+                            </div>
+                        @endif
 
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
                         @yield('content')
 
                     </section>

@@ -37,32 +37,27 @@ class EvaluateCriteriaController extends Controller
      */
     public function store(Request $request)
     {
-//        $category = $request->except('_token', 'levels');
-//
-//        DB::beginTransaction();
-//
-//        try {
-//            $categoryResult = Category::create($category);
-//            if(!is_null($request->levels)){
-//                for ($i = 0;  $i < count($request->levels); $i++){
-//                    $categoryResult->levels()->attach($request->levels[$i]);
-//                }
-//            }
-//        } catch (\Exception $e) {
-//            DB::rollback();
-//            return Helper::throwError(Helper::msg("error.save"));
-//        } catch (\Error $e) {
-//            DB::rollback();
-//            return Helper::throwError(Helper::msg("error.save"));
-//        }
-//
-//        DB::commit();
-//
-//        if ($categoryResult) {
-//            return Helper::throwSuccess(Helper::msg("create"), redirect()->route('helpdesk.category.index'));
-//        } else {
-//            return Helper::throwError(Helper::msg("error.save"));
-//        }
+        $evaluateCriteria = $request->except('_token');
+        $evaluateCriteria['user_id'] = auth()->user()->id;
+
+        DB::beginTransaction();
+        try {
+            $evaluateCriteriaResult = EvaluateCriteria::create($evaluateCriteria);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return Helper::throwError(Helper::msg("error.save"));
+        } catch (\Error $e) {
+            DB::rollback();
+            return Helper::throwError(Helper::msg("error.save"));
+        }
+
+        DB::commit();
+
+        if ($evaluateCriteriaResult) {
+            return Helper::throwSuccess(Helper::msg("create"), redirect()->route('evaluate.criteria.index'));
+        } else {
+            return Helper::throwError(Helper::msg("error.save"));
+        }
     }
 
     /**

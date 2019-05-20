@@ -17,11 +17,6 @@
   ],
   "dependencies": {
     "jquery-minicolors" : "",
-    "fullcalendar": "",
-    "metafizzy/packery": "",
-    "SyntaxHighlighter": "",
-    "owl.carousel": "",
-    "starrr": "",
-    "easy-mapper" : "git://github.com/maikealame/easy-mapper.git#master"
+    "fullcalendar": ""
   }
 }

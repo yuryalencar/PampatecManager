@@ -15,6 +15,8 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/Ionicons/css/ionicons.min.css') }}">
 
+    <link rel="stylesheet"  href="{{ mix('/assets/css/app.css') }}"></link>
+
     <script type="text/javascript" src="{{ mix('/assets/js/app.js') }}"></script>
     <script src="/js/global.js"></script>
 

@@ -11,7 +11,7 @@
     <h5><b>Regra de Aceitação</b></h5>
     <p>Serão desclassificados os projetos que não atingirem 50% (cinquenta por cento) da pontuação individual de cada critério ou não atingirem 50%(cinquenta por cento) da pontuação máxima total.</p>
 
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover" onload="initDataTable()">
         <thead>
         <tr>
             <th>Título</th>

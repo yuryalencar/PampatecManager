@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'avaliacao', 'as' => 'evalua
     Route::group(['middleware' => ['auth'], 'prefix' => 'criterios', 'as' => 'criteria.'], function () {
         Route::get('/', ['as' => 'index', 'uses' => 'EvaluateCriteriaController@index']);
         Route::get('/novo', ['as' => 'create', 'uses' => 'EvaluateCriteriaController@create']);
-        Route::post('/', ['as' => '', 'EvaluateCriteriaController@store']);
+        Route::post('/', ['as' => 'store', 'uses' => 'EvaluateCriteriaController@store']);
         Route::post('/atualizar', ['as' => 'update', 'uses' => 'EvaluateCriteriaController@update']);
         Route::get('/editar/{id}', ['as' => 'edit', 'uses' => 'EvaluateCriteriaController@edit']);
         Route::get('/{id}/remover', ['as' => 'remove', 'uses' => 'EvaluateCriteriaController@destroy']);
