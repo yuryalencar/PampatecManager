@@ -193,7 +193,7 @@ return [
         [
             'text' => 'Planos Existentes',
             'url' => 'plano/planosexistentes',
-            'icon' => ''
+            'icon' => 'list-alt'
 //            'can'  => 'entrepreneur',
         ],
     ],

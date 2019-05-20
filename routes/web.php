@@ -23,6 +23,9 @@ $this->group(['middleware' => ['auth'], 'prefix' => 'plano'], function(){
     $this->get('novoplano', 'BusinessPlanController@novoplano')->name('novo.plano');
     $this->post('novoplano', 'BusinessPlanController@salvar')->name('salvar.plano');
     $this->get('planosexistentes', 'BusinessPlanController@planosexistentes')->name('listar.plano');
+    $this->get('editarplano', 'BusinessPlanController@editarplano')->name('editar.plano');
+    $this->post('editarplano', 'BusinessPlanController@update')->name('update.plano');
+    $this->get('destroy', 'BusinessPlanController@destroy')->name('destroy.plano');
 });
 
 

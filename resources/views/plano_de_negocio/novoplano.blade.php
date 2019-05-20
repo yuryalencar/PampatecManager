@@ -4,8 +4,6 @@
 
 @section('content_header')
 
-    <h1>Novo Plano</h1>
-    <br>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li><a id="navContact" onclick="enableContact()">Contatos</a></li>
@@ -20,11 +18,19 @@
 
 @section('content')
 
+
+
     <div class="box">
 {{--        <div class="box-header">--}}
 {{--        </div>--}}
         <div class="box-body">
-            <form action="{{route('salvar.plano')}}"  method="post">
+
+            @if(isset($plano))
+                <form action="{{route('update.plano')}}"  method="post">
+                    <input hidden name="id" value="{{$plano->id}}">
+            @else
+                <form action="{{route('salvar.plano')}}"  method="post">
+            @endif
                 {{csrf_field()}}
                 <div class="form-group">
                     <div id="contact">

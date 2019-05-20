@@ -44,4 +44,25 @@ class BusinessPlanController extends Controller
         return view('plano_de_negocio/planosexistentes', compact('allplans'));
     }
 
+
+    public function editarplano(Request $request){
+
+        $plano = BusinessPlan::where('id', $request->id)->first();
+        return view('plano_de_negocio/novoplano', compact('plano'));
+
+    }
+
+    public function update(Request $request){
+
+        $planUpdate = $request->except('_token', 'id');
+        BusinessPlan::where('id', $request->id)->update($planUpdate);
+        return redirect()->route('listar.plano');
+    }
+
+    public function destroy(Request $request){
+        $planDestroyed = BusinessPlan::findOrfail($request->id);
+        $planDestroyed->delete();
+        return redirect()->route('listar.plano');
+    }
+
 }
