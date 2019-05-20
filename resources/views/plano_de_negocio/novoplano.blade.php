@@ -24,7 +24,8 @@
 {{--        <div class="box-header">--}}
 {{--        </div>--}}
         <div class="box-body">
-            <form>
+            <form action="{{route('salvar.plano')}}"  method="post">
+                {{csrf_field()}}
                 <div class="form-group">
                     <div id="contact">
                         @include('plano_de_negocio.partials.contacts')

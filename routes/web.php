@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 $this->group(['middleware' => ['auth'], 'prefix' => 'plano'], function(){
     $this->get('novoplano', 'PlanoNegocioController@novoplano')->name('novo.plano');
+    $this->post('novoplano', 'PlanoNegocioController@salvar')->name('salvar.plano');
 });
 
 
