@@ -11,31 +11,38 @@
 @stop
 
 @section('content')
-    <br/><br/>
-
     <form id="form_submit" action="{{route('evaluate.criteria.store')}}" method="post">
 
         {{csrf_field()}}
 
-        <label class="col-sm-2">Título: </label>
-        <input type="text" name="title" class="col-sm-9"/>
+        <div class="form-group">
+            <label for="title">Título*: </label>
+            <input id="title" class="form-control" type="text" name="title" placeholder="Insira um título aqui"
+                   value="{{ old('title') }}"/>
+            <small id="titleHelp" class="form-text text-muted">Este campo é referente ao nome de um critério que será
+                utilizado posteriormente para avaliações.
+            </small>
 
-        <br/><br/>
 
-        <label class="col-sm-2">Peso: </label>
-        <input type="number" name="score" class="col-sm-9"/>
+        </div>
+        <div class="form-group">
+            <label for="score">Peso*: </label>
+            <input type="number" name="score" class="form-control" value="{{ old('score') }}"/>
+            <small id="scoreHelp" class="form-text text-muted">Este campo é referente ao peso que um critério possui
+                para a avaliação.
+            </small>
+        </div>
 
-        <br/><br/>
-
-        <label class="col-lg-2 inline">Descrição:</label>
-        <br/><br/>
-        {{--<div id="description" name="description"></div>--}}
-        <textarea id="description" name="description"></textarea>
-        <script>var editor = new Jodit('#description', {
-                removeButtons: ['fullsize','image','file','video','about', 'source']
-            });</script>
-
-        <br/><br/>
+        <div class="form-group">
+            <label for="description">Descrição: </label>
+            <textarea id="description" name="description">{{ old('description') }}</textarea>
+            <script>var editor = new Jodit('#description', {
+                    removeButtons: ['fullsize', 'image', 'file', 'video', 'about', 'source']
+                });</script>
+            <small id="descriptionHelp" class="form-text text-muted">Este campo não é obrigatório e é referente à
+                descrição do critério para ajudar no seu entendimento.
+            </small>
+        </div>
 
         <button class="btn pull-right bg-green">Salvar</button>
     </form>

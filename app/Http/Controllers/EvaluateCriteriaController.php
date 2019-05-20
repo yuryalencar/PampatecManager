@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
+use App\Http\Requests\EvaluateCriteriaRequest;
 use App\Models\EvaluateCriteria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,7 @@ class EvaluateCriteriaController extends Controller
      * @param HDCategoryRequest $request
      * @return Helper
      */
-    public function store(Request $request)
+    public function store(EvaluateCriteriaRequest $request)
     {
         $evaluateCriteria = $request->except('_token');
         $evaluateCriteria['user_id'] = auth()->user()->id;
