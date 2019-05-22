@@ -19,8 +19,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
         'resources/assets/bower/jquery-ui/jquery-ui.min.js',
         'resources/assets/bower/jquery-mask-plugin/dist/jquery.mask.min.js',
 
-        'resources/assets/bower/izimodal/js/iziModal.js',
-        'resources/assets/bower/izitoast/dist/js/iziToast.js',
+        'resources/assets/bower/izimodal/js/iziModal.min.js',
+        'resources/assets/bower/izitoast/dist/js/iziToast.min.js',
 
     ], 'public/assets/js/app.js', './')
 
@@ -29,8 +29,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
         'resources/assets/bower/jquery-ui/themes/base/jquery-ui.min.css',
         'resources/assets/bower/font-awesome/css/font-awesome.css',
 
-        'resources/assets/bower/izimodal/css/iziModal.css',
-        'resources/assets/bower/izitoast/dist/css/iziToast.css',
+        'resources/assets/bower/izimodal/css/iziModal.min.css',
+        'resources/assets/bower/izitoast/dist/css/iziToast.min.css',
 
         // 'public/assets/sass/app.css', // bootstrap compiled!
 
