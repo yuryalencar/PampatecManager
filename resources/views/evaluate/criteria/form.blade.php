@@ -11,14 +11,16 @@
 @stop
 
 @section('content')
-    <form id="form_submit" action="{{route('evaluate.criteria.store')}}" method="post">
+    <form id="form_submit"
+          action="{{isset($evaluateCriteria)? route('evaluate.criteria.update', $evaluateCriteria->id):route('evaluate.criteria.store') }}"
+          method="post">
 
         {{csrf_field()}}
-
         <div class="form-group">
             <label for="title">*Título: </label>
-            <input id="title" class="form-control" type="text" name="title" placeholder="Insira um título aqui"
-                   value="{{ old('title') }}"/>
+            <input id="title" required class="form-control" type="text" name="title"
+                   value="{{old("title",isset($evaluateCriteria)?$evaluateCriteria->title:null)}}"
+                   placeholder="Insira um título aqui">
             <small id="titleHelp" class="form-text text-muted">Este campo é referente ao nome de um critério que será
                 utilizado posteriormente para avaliações.
             </small>
@@ -27,7 +29,9 @@
         </div>
         <div class="form-group">
             <label for="score">*Peso: </label>
-            <input type="number" name="score" class="form-control" value="{{ old('score') }}" placeholder="Insira um Peso aqui"/>
+            <input type="number" name="score" class="form-control"
+                   value="{{old("score",isset($evaluateCriteria)?$evaluateCriteria->score:null)}}"
+                   placeholder="Insira um Peso aqui"/>
             <small id="scoreHelp" class="form-text text-muted">Este campo é referente ao peso que um critério possui
                 para a avaliação.
             </small>
@@ -35,7 +39,8 @@
 
         <div class="form-group">
             <label for="description">Descrição: </label>
-            <textarea id="description" name="description"  placeholder="Insira uma Descrição aqui">{{ old('description') }}</textarea>
+            <textarea id="description" name="description"
+                      placeholder="Insira uma Descrição aqui">{{old("description",isset($evaluateCriteria)?$evaluateCriteria->description:null)}}</textarea>
             <script>var editor = new Jodit('#description', {
                     removeButtons: ['fullsize', 'image', 'file', 'video', 'about', 'source']
                 });</script>
@@ -44,6 +49,9 @@
             </small>
         </div>
 
+        @if(isset($evaluateCriteria))
+            <input hidden name="id" value="{{$evaluateCriteria->id}}"/>
+        @endif
         <button class="btn pull-right bg-green">Salvar</button>
     </form>
 @stop

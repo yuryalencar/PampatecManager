@@ -4,9 +4,11 @@
 
 @section('content_header')
     <h1 class="inline">Critérios de Avaliação</h1>
-    <a class="btn btn-primary inline pull-right" href="{{route('evaluate.criteria.create')}}"><i class="fa fa-plus"
-                                                                                                 aria-hidden="true"></i>
-        Novo Critério</a>
+    @can('authorization', 'manager')
+        <a class="btn btn-primary inline pull-right" href="{{route('evaluate.criteria.create')}}"><i class="fa fa-plus"
+                                                                                                     aria-hidden="true"></i>
+            Novo Critério</a>
+    @endcan
 @stop
 
 @section('content')
@@ -29,20 +31,17 @@
                 <td>{{$criteria->score}}</td>
                 <td>
                     <div class="btn-group">
-                        <form action="#" method="POST" style="display: inline">
-                            {!! csrf_field() !!}
-                            <button type="submit" title="Mais Detalhes" name="id_record" value="{{$criteria->id}}"
-                                    class="btn btn-bitbucket"><i class="fa fa-info-circle"></i>
-                            </button>
-                        </form>
-                        {{--@can('manager')--}}
-                        <form action="#" method="POST" style="display: inline">
-                            {!! csrf_field() !!}
-                            <button type="submit" title="Editar" name="id_record" value="{{$criteria->id}}"
-                                    class="btn btn-google"><i class="fa fa-edit"></i>
-                            </button>
-                        </form>
-                        {{--@endcan--}}
+                        <button type="submit" title="Mais Detalhes" name="id_record" value="{{$criteria->id}}"
+                                class="btn btn-bitbucket"><i class="fa fa-info-circle"></i>
+                        </button>
+                        @can('authorization','manager')
+                            <a href="{{route("evaluate.criteria.edit", $criteria->id)}}" title="Editar"
+                               class="btn btn-openid"><i class="fa fa-edit"></i>
+                            </a>
+                            <a href="{{route("evaluate.criteria.remove", $criteria->id)}}" title="Excluir"
+                               class="btn btn-danger"><i class="fa fa-trash"></i>
+                            </a>
+                        @endcan
                     </div>
                 </td>
             </tr>

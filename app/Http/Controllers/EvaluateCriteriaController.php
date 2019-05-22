@@ -10,32 +10,17 @@ use Illuminate\Support\Facades\DB;
 
 class EvaluateCriteriaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $criterias = EvaluateCriteria::paginate();
         return view('evaluate.criteria.index', compact('criterias'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('evaluate.criteria.form');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param HDCategoryRequest $request
-     * @return Helper
-     */
     public function store(EvaluateCriteriaRequest $request)
     {
         $evaluateCriteria = $request->except('_token');
@@ -72,114 +57,82 @@ class EvaluateCriteriaController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param  \App\HDCategory $category
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-//        try {
-//            $category = Category::findOrfail($id);
-//            $allLevels = Level::all();
-//
-//            return view('manager.helpdesk.categories.form', compact('category', 'allLevels'));
-//        } catch (\Exception $e) {
-//            return Helper::throwError(Helper::msg("error"));
-//        }
+        try {
+            $evaluateCriteria = EvaluateCriteria::findOrfail($id);
+            return view('evaluate.criteria.form', compact('evaluateCriteria'));
+        } catch (\Exception $e) {
+            return Helper::throwError(Helper::msg("error"));
+        }
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\HDCategory $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
+    public function update(EvaluateCriteriaRequest $request)
     {
-//        $category = $request->except('_token', 'levels');
-//
-//        $categoryDatabase = Category::find($request->id);
-//
-//        DB::beginTransaction();
-//
-//        try {
-//            $categoryDatabase->update($category);
-//            $categoryDatabase->levels()->detach();
-//
-//            if(!is_null($request->levels)){
-//                for ($i = 0;  $i < count($request->levels); $i++){
-//                    $categoryDatabase->levels()->attach($request->levels[$i]);
-//                }
-//            }
-//
-//        } catch (\Exception $e) {
-//            DB::rollback();
-//            return Helper::throwError(Helper::msg("error.update"));
-//        } catch (\Error $e) {
-//            DB::rollback();
-//            return Helper::throwError(Helper::msg("error.update"));
-//        }
-//        DB::commit();
-//
-//        if ($categoryDatabase) {
-//            return Helper::throwSuccess(Helper::msg("update"), redirect()->route('helpdesk.category.index'));
-//        } else {
-//            return Helper::throwError(Helper::msg("error.update"));
-//        }
+        $evaluateCriteriaData = $request->except('_token');
+        $evaluateCriteriaDatabase = EvaluateCriteria::find($request->id);
+
+        DB::beginTransaction();
+
+        try {
+            $result = $evaluateCriteriaDatabase->update($evaluateCriteriaData);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return Helper::throwError(Helper::msg("error.update"));
+        } catch (\Error $e) {
+            DB::rollback();
+            return Helper::throwError(Helper::msg("error.update"));
+        }
+        DB::commit();
+
+        if ($result) {
+            return Helper::throwSuccess(Helper::msg("update"), redirect()->route('evaluate.criteria.index'));
+        } else {
+            return Helper::throwError(Helper::msg("error.update"));
+        }
 
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     * @param  \App\HDCategory $category
-     * @return \Illuminate\Http\Response
-     * Notificacao ao ser excluida automaticamente passa para desativada
-     */
     public function destroy($id)
     {
-//
-//        $category = Category::findOrfail($id);
-//
-//        try {
-//
-//            $res = $category->delete();
-//
-//            if ($res) {
-//                return Helper::throwSuccess(Helper::msg("delete"));
-//            } else {
-//                return Helper::throwError(Helper::msg("error.delete"));
-//            }
-//        } catch (\Exception $e) {
-//            return Helper::throwError(Helper::msg("error.restore"));
-//        }
-//
+
+        $evaluateCriteria = EvaluateCriteria::findOrfail($id);
+
+        try {
+
+            $result = $evaluateCriteria->delete();
+
+            if ($result) {
+                return Helper::throwSuccess(Helper::msg("delete"), redirect()->route('evaluate.criteria.index'));
+            } else {
+                return Helper::throwError(Helper::msg("error.delete"));
+            }
+        } catch (\Exception $e) {
+            return Helper::throwError(Helper::msg("error.restore"));
+        }
+
     }
 
-    /**
-     * @param $id
-     * @return mixed
-     */
     public function restore($id)
     {
-//        DB::beginTransaction();
-//        try {
-//            $res = Category::withTrashed()->find($id)->restore();
-//        } catch (\Exception $e) {
-//            DB::rollback();
-//            return Helper::throwError(Helper::msg("error.update"));
-//        } catch (\Error $e) {
-//            DB::rollback();
-//            return Helper::throwError(Helper::msg("error.update"));
-//        }
-//        DB::commit();
-//
-//        if ($res) {
-//            return Helper::throwSuccess(Helper::msg("update"), redirect()->route('helpdesk.category.index'));
-//        } else {
-//            return Helper::throwError(Helper::msg("error.update"));
-//        }
+        DB::beginTransaction();
+        try {
+            $result = EvaluateCriteria::withTrashed()->find($id)->restore();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return Helper::throwError(Helper::msg("error.update"));
+        } catch (\Error $e) {
+            DB::rollback();
+            return Helper::throwError(Helper::msg("error.update"));
+        }
+        DB::commit();
+
+        if ($result) {
+            return Helper::throwSuccess(Helper::msg("update"), redirect()->route('evaluate.criteria.index'));
+        } else {
+            return Helper::throwError(Helper::msg("error.update"));
+        }
     }
 }

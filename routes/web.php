@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'avaliacao', 'as' => 'evalua
         Route::get('/editar/{id}', ['as' => 'edit', 'uses' => 'EvaluateCriteriaController@edit']);
         Route::get('/{id}/remover', ['as' => 'remove', 'uses' => 'EvaluateCriteriaController@destroy']);
         Route::get('/{id}/restaurar', ['as' => 'restore', 'uses' => 'EvaluateCriteriaController@restore']);
-        Route::delete('/{id}', ['as' => 'delete', 'EvaluateCriteriaController@destroy']);
+        Route::delete('/{id}', ['as' => 'delete', 'uses' => 'EvaluateCriteriaController@destroy']);
     });
 
 });
