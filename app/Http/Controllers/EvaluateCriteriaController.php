@@ -16,6 +16,12 @@ class EvaluateCriteriaController extends Controller
         return view('evaluate.criteria.index', compact('criterias'));
     }
 
+    public function deleted()
+    {
+        $criterias = EvaluateCriteria::onlyTrashed()->paginate();
+        return view('evaluate.criteria.deleted', compact('criterias'));
+    }
+
     public function create()
     {
         return view('evaluate.criteria.form');

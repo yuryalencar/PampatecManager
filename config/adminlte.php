@@ -192,6 +192,13 @@ return [
             'icon' => 'list'
 //            'can'  => 'entrepreneur',
         ],
+        'RESTAURAÇÕES',
+        [
+            'text' => 'Critérios de Avaliação',
+            'url' => 'avaliacao/criterios/excluidos',
+            'icon' => 'list'
+//            'can'  => 'entrepreneur',
+        ],
         'CONFIGURAÇÕES DA CONTA',
         [
             'text' => 'Dados Pessoais',
