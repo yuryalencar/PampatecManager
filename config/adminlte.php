@@ -196,6 +196,24 @@ return [
             'icon' => 'list-alt'
 //            'can'  => 'entrepreneur',
         ],
+        'AVALIAÇÃO DE PLANOS',
+        [
+            'text' => 'Critérios',
+            'url' => 'avaliacao/criterios',
+            'icon' => 'list'
+//            'can'  => 'entrepreneur',
+        ],
+        'CONFIGURAÇÕES DA CONTA',
+        [
+            'text' => 'Dados Pessoais',
+            'url' => 'admin/settings',
+            'icon' => 'user',
+        ],
+        [
+            'text' => 'Mudar Senha',
+            'url' => 'admin/settings',
+            'icon' => 'lock',
+        ],
     ],
 
     /*

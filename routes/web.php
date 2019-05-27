@@ -28,4 +28,18 @@ $this->group(['middleware' => ['auth'], 'prefix' => 'plano'], function(){
     $this->get('destroy', 'BusinessPlanController@destroy')->name('destroy.plano');
 });
 
+Route::group(['middleware' => ['auth'], 'prefix' => 'avaliacao', 'as' => 'evaluate.'], function () {
+
+    Route::group(['middleware' => ['auth'], 'prefix' => 'criterios', 'as' => 'criteria.'], function () {
+        Route::get('/', ['as' => 'index', 'uses' => 'EvaluateCriteriaController@index']);
+        Route::get('/novo', ['as' => 'create', 'uses' => 'EvaluateCriteriaController@create']);
+        Route::post('/', ['as' => '', 'EvaluateCriteriaController@store']);
+        Route::post('/atualizar', ['as' => 'update', 'uses' => 'EvaluateCriteriaController@update']);
+        Route::get('/editar/{id}', ['as' => 'edit', 'uses' => 'EvaluateCriteriaController@edit']);
+        Route::get('/{id}/remover', ['as' => 'remove', 'uses' => 'EvaluateCriteriaController@destroy']);
+        Route::get('/{id}/restaurar', ['as' => 'restore', 'uses' => 'EvaluateCriteriaController@restore']);
+        Route::delete('/{id}', ['as' => 'delete', 'EvaluateCriteriaController@destroy']);
+    });
+
+});
 
