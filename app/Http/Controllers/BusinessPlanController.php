@@ -20,9 +20,9 @@ class BusinessPlanController extends Controller
 
         DB::beginTransaction();
 
-
         try {
             $planResult = BusinessPlan::create($plano);
+
         } catch (\Exception $e) {
             DB::rollback();
             //return Helper::throwError(Helper::msg("error.save"));

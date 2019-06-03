@@ -13,11 +13,11 @@ class BusinessPlan extends Model
     protected $table = 'business_plan';
     //protected $fillable = ['name'];
         protected $fillable =[
-        'customerSegment', 'valueOffer', 'keyActivities', 'entrepreneursEmail', 'companyProject',
+            'owner_id', 'status',  'customerSegment', 'valueOffer', 'keyActivities', 'entrepreneursEmail', 'companyProject',
         'customerRelations', 'keyPartnerships', 'channels', 'mainFeatures', 'competitors', 'formationPartners',
         'experiencePartners','competencePartners','equityInterest','potentialEmplymentIncome','stageEvolution',
         'technologyProcesses','innovationPotential','application','expectedDifficulties','businessUniversity',
-        'enterpriseCommunityGovernment', 'infrastructure'
+        'enterpriseCommunityGovernment', 'infrastructure',
     ];
 
 }

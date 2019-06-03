@@ -16,8 +16,11 @@ class BusinessPlan extends Migration
         Schema::create('business_plan', function (Blueprint $table) {
             $table->increments('id');
 
-            //          $table->integer('owner_id')->unsigned();
- //           $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('owner_id')->unsigned();
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->string('status')->nullable();
+
             //  Business
             $table->longText('customerSegment')->nullable();
             $table->longText('valueOffer')->nullable();

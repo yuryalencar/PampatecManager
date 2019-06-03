@@ -3,7 +3,6 @@
 @section('title', 'Novo Plano')
 
 @section('content_header')
-
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li><a id="navContact" onclick="enableContact()">Contatos</a></li>
@@ -21,42 +20,41 @@
 
 
     <div class="box">
-{{--        <div class="box-header">--}}
-{{--        </div>--}}
-        <div class="box-body">
 
-            @if(isset($plano))
-                <form action="{{route('update.plano')}}"  method="post">
-                    <input hidden name="id" value="{{$plano->id}}">
-            @else
-                <form action="{{route('salvar.plano')}}"  method="post">
-            @endif
-                {{csrf_field()}}
-                <div class="form-group">
-                    <div id="contact">
-                        @include('plano_de_negocio.partials.contacts')
-                    </div>
-                    <div id="business">
-                        @include('plano_de_negocio.partials.business')
-                    </div>
-                    <div id="marketAnalysis">
-                        @include('plano_de_negocio.partials.marketAnalysis')
-                    </div>
-                    <div id="productServer">
-                        @include('plano_de_negocio.partials.productServer')
-                    </div>
-                    <div id="peopleManagement">
-                        @include('plano_de_negocio.partials.peopleManagement')
-                    </div>
-                    <div id="financialPlan">
-                        @include('plano_de_negocio.partials.financialPlan')
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success pull-right">Salvar</button>
-                </div>
+        @if(isset($plano))
+            <form action="{{route('update.plano')}}"  method="post">
+                <input hidden name="id" value="{{$plano->id}}">
+                @else
+                    <form action="{{route('salvar.plano')}}"  method="post">
+                        <input hidden id="status" name='status' value="salvo">
+                        <input hidden id="owner_id" name='owner_id' value="{{\Illuminate\Support\Facades\Auth::user()->id}}">
+                        @endif
+                        {{csrf_field()}}
+                        <div class="form-group">
+                            <div id="contact">
+                                @include('plano_de_negocio.partials.contacts')
+                            </div>
+                            <div id="business">
+                                @include('plano_de_negocio.partials.business')
+                            </div>
+                            <div id="marketAnalysis">
+                                @include('plano_de_negocio.partials.marketAnalysis')
+                            </div>
+                            <div id="productServer">
+                                @include('plano_de_negocio.partials.productServer')
+                            </div>
+                            <div id="peopleManagement">
+                                @include('plano_de_negocio.partials.peopleManagement')
+                            </div>
+                            <div id="financialPlan">
+                                @include('plano_de_negocio.partials.financialPlan')
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success pull-right">Salvar</button>
+                        </div>
+                    </form>
             </form>
-        </div>
     </div>
 
     <script>
