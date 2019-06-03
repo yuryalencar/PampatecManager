@@ -14,9 +14,9 @@
 ][config('adminlte.layout')] : '') . (config('adminlte.collapse_sidebar') ? ' sidebar-collapse ' : ''))
 
 @push('script')
-    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.js">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 @endpush
 
 @section('body')
@@ -27,7 +27,7 @@
             if(document.getElementsByClassName('table').item(0) != null){
                 $('.table').DataTable({
                     "paging": true,
-                    "lengthChange": true,
+                    "lengthChange": false,
                     "searching": true,
                     "ordering": true,
                     "info": true,
@@ -159,7 +159,19 @@
 
                     <!-- Main content -->
                     <section class="content">
+                        @if(!empty($errors->first()))
+                            <div class="row col-lg-12">
+                                <div class="alert alert-danger">
+                                    <span>{{ $errors->first() }}</span>
+                                </div>
+                            </div>
+                        @endif
 
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
                         @yield('content')
 
                     </section>

@@ -13,7 +13,7 @@ class EvaluateCriteria extends Model
     protected $table = 'evaluate_criteria';
 
     protected $fillable = [
-        'title', 'description'
+        'title', 'description','score', 'user_id'
     ];
 
     public function user(){

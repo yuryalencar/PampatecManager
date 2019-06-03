@@ -19,6 +19,11 @@ class Helper
         return $route->withErrors(array('alert-danger' => $messages))->withInput(Request::all());
     }
 
+    public static function throwSuccess($message, $route)
+    {
+        return $route->with('status',$message);
+    }
+
     public static function msg($opt)
     {
         $messages = app(self::class)->defaultMessages();

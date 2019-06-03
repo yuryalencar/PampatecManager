@@ -1,0 +1,11 @@
+table tr:nth-child(odd) {
+    background: #caefc2;
+}
+
+table tr:nth-child(even) {
+    background: #ffffff;
+}
+
+.td-title {
+    background: #ffffff;
+}
