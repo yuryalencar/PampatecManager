@@ -1,0 +1,22 @@
+{
+  "name": "public",
+  "homepage": "https://github.com/yuryalencar/PampatecManager",
+  "authors": [
+    "Yury Alencar Lima <yuryalencar19@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-minicolors" : "",
+    "fullcalendar": ""
+  }
+}
