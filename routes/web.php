@@ -44,3 +44,35 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'avaliacao', 'as' => 'evalua
 
 });
 
+Route::group(['middleware' => ['auth'], 'prefix' => 'controle', 'as' => 'control.'], function () {
+
+    Route::group(['middleware' => ['auth'], 'prefix' => 'acesso', 'as' => 'access.'], function () {
+
+        Route::group(['middleware' => ['auth'], 'prefix' => 'empresas', 'as' => 'company.'], function () {
+            Route::get('/', ['as' => 'index', 'uses' => 'AccessControl\IncubatedController@indexCompany']);
+            Route::get('/excluidos', ['as' => 'deleted', 'uses' => 'EvaluateCriteriaController@deleted']); // @TODO
+            Route::get('/novo', ['as' => 'create', 'uses' => 'EvaluateCriteriaController@create']); // @TODO
+            Route::post('/', ['as' => 'store', 'uses' => 'EvaluateCriteriaController@store']); // @TODO
+            Route::post('/atualizar', ['as' => 'update', 'uses' => 'EvaluateCriteriaController@update']); // @TODO
+            Route::get('/editar/{id}', ['as' => 'edit', 'uses' => 'EvaluateCriteriaController@edit']); // @TODO
+            Route::get('/{id}/remover', ['as' => 'remove', 'uses' => 'EvaluateCriteriaController@destroy']); // @TODO
+            Route::get('/{id}/restaurar', ['as' => 'restore', 'uses' => 'EvaluateCriteriaController@restore']); // @TODO
+            Route::delete('/{id}', ['as' => 'delete', 'uses' => 'EvaluateCriteriaController@destroy']); // @TODO
+        });
+
+        Route::group(['middleware' => ['auth'], 'prefix' => 'grupos', 'as' => 'research.'], function () {
+            Route::get('/', ['as' => 'index', 'uses' => 'AccessControl\IncubatedController@indexResearch']);
+            Route::get('/excluidos', ['as' => 'deleted', 'uses' => 'EvaluateCriteriaController@deleted']); // @TODO
+            Route::get('/novo', ['as' => 'create', 'uses' => 'EvaluateCriteriaController@create']); // @TODO
+            Route::post('/', ['as' => 'store', 'uses' => 'EvaluateCriteriaController@store']); // @TODO
+            Route::post('/atualizar', ['as' => 'update', 'uses' => 'EvaluateCriteriaController@update']); // @TODO
+            Route::get('/editar/{id}', ['as' => 'edit', 'uses' => 'EvaluateCriteriaController@edit']); // @TODO
+            Route::get('/{id}/remover', ['as' => 'remove', 'uses' => 'EvaluateCriteriaController@destroy']); // @TODO
+            Route::get('/{id}/restaurar', ['as' => 'restore', 'uses' => 'EvaluateCriteriaController@restore']); // @TODO
+            Route::delete('/{id}', ['as' => 'delete', 'uses' => 'EvaluateCriteriaController@destroy']); // @TODO
+        });
+
+    });
+
+});
+

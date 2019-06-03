@@ -108,18 +108,29 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+//        Tipo de acesso
+        'CONTROLE DE ACESSO',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Pessoas',
+            'icon' => 'address-card',
+            'url'  => 'controle/acesso/empresas',
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text' => 'Salas',
+            'icon' => 'address-card',
+            'url'  => 'controle/acesso/empresas',
+        ],
+        [
+            'text' => 'Empresas',
+            'icon' => 'building',
+            'url'  => 'controle/acesso/empresas',
+        ],
+        [
+            'text'        => 'Grupos de Pesquisa',
+            'url'         => 'controle/acesso/grupos',
+            'icon'        => 'users',
+//            'label'       => 4,
+//            'label_color' => 'success',
         ],
         'ACCOUNT SETTINGS',
         [
