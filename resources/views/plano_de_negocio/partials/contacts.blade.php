@@ -2,9 +2,9 @@
 <button style="display: inline" type="button" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg"
                                                                                  aria-hidden="true"></i></button>
 @if(isset($plano))
-    <input type="text" name="companyProject" placeholder="" class="form-control" value="{{$plano->companyProject}}">
+    <input type="text" id="companyProject" placeholder="" class="form-control" value="{{$plano->companyProject}}">
 @else
-    <input type="text" name="companyProject" placeholder="" class="form-control">
+    <input type="text" id="companyProject" placeholder="" class="form-control">
 @endif
 
 <br/>
@@ -14,8 +14,8 @@
                                                                                  aria-hidden="true"></i></button>
 
 @if(isset($plano))
-    <input type="text" name="entrepreneursEmail" placeholder="" class="form-control" value="{{$plano->entrepreneursEmail}}">
+    <input type="text" id="entrepreneursEmail" placeholder="" class="form-control" value="{{$plano->entrepreneursEmail}}">
 @else
-    <input type="text" name="entrepreneursEmail" placeholder="" class="form-control">
+    <input type="text" id="entrepreneursEmail" placeholder="" class="form-control">
 @endif
 
