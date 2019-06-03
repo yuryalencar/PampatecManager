@@ -22,7 +22,7 @@
         @foreach($allplans as $planos)
             <tr>
                 <td>{{$planos->companyProject}}</td>
-                <td></td>
+                <td>{{$planos->status}}</td>
                 <td>
                     <div class="btn-group">
                         @can('authorization','manager')

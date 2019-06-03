@@ -11,7 +11,7 @@
 @if(isset($plano))
     <textarea rows="5" type="text" id="valueOffer" name="valueOffer" placeholder="" class="form-control" value="{{$plano->valueOffer}}"></textarea>
 @else
-    <textarea rows="5" type="text" id="valueOffer" name="valueOffer placeholder="" class="form-control"></textarea>
+    <textarea rows="5" type="text" id="valueOffer" name="valueOffer" placeholder="" class="form-control"></textarea>
 @endif
 <br/>
 

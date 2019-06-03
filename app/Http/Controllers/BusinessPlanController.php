@@ -33,6 +33,8 @@ class BusinessPlanController extends Controller
 
         DB::commit();
 
+        //dd($plano);
+
         if($planResult){
             return redirect()->route('listar.plano');
         }

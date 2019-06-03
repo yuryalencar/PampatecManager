@@ -11,7 +11,6 @@ class BusinessPlan extends Model
 
     protected $dates = ['deleted_at'];
     protected $table = 'business_plan';
-    //protected $fillable = ['name'];
         protected $fillable =[
             'owner_id', 'status',  'customerSegment', 'valueOffer', 'keyActivities', 'entrepreneursEmail', 'companyProject',
         'customerRelations', 'keyPartnerships', 'channels', 'mainFeatures', 'competitors', 'formationPartners',
