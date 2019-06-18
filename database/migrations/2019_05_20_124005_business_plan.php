@@ -63,6 +63,6 @@ class BusinessPlan extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('business_plan');
     }
 }
