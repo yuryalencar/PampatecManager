@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\AccessControl;
 
 use App\Helpers\Helper;
+use App\Http\Requests\ResearchGroupRequest;
 use Illuminate\Http\Request;
 use App\Models\BusinessPartners;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class BusinessPartnersController extends Controller
 {
@@ -21,26 +23,75 @@ class BusinessPartnersController extends Controller
         return view('control_access.company.index', compact('allCompanies'));
     }
 
-    public function destroyCompany($id)
+    public function createResearchGroup()
     {
-        $companyToDelete = BusinessPartners::findOrfail($id);
-        try {
-            $isDeleted = $companyToDelete->delete();
-            return $isDeleted ? Helper::throwSuccess(Helper::msg("delete"), redirect()->route('control.access.company.index')) :
-                Helper::throwError(Helper::msg("error.delete"));
-        } catch (\Exception $e) {
-            return Helper::throwError(Helper::msg("error.default"));
-        }
-
+        return view('control_access.research_group.form');
     }
 
-    public function destroyResearchGroup($id)
+    public function storeResearchGroup(ResearchGroupRequest $request)
     {
-        $researchGroupToDelete = BusinessPartners::findOrfail($id);
+        $researchGroupToSave = $request->except('_token');
+        array_set($researchGroupToSave, "is_company", 0);
+        array_set($researchGroupToSave, "is_research_group", 1);
+
+        DB::beginTransaction();
         try {
-            $isDeleted = $researchGroupToDelete->delete();
-            return $isDeleted ? Helper::throwSuccess(Helper::msg("delete"), redirect()->route('control.access.research.index')) :
-                Helper::throwError(Helper::msg("error.delete"));
+            $isSaved = BusinessPartners::create($researchGroupToSave);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return Helper::throwError(Helper::msg("error.save"));
+        } catch (\Error $e) {
+            DB::rollback();
+            return Helper::throwError(Helper::msg("error.save"));
+        }
+
+        DB::commit();
+
+        return $isSaved ? Helper::throwSuccess(Helper::msg("create"), redirect()->route('control.access.research.index')) :
+            Helper::throwError(Helper::msg("error.save"));
+    }
+
+    public function updateResearchGroup(ResearchGroupRequest $request)
+    {
+        $dataForUpdateResearchGroup = $request->except('_token');
+        $researchGroupToUpdate = BusinessPartners::find($request->id);
+
+        DB::beginTransaction();
+        try {
+            $isUpdated = $researchGroupToUpdate->update($dataForUpdateResearchGroup);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return Helper::throwError(Helper::msg("error.update"));
+        } catch (\Error $e) {
+            DB::rollback();
+            return Helper::throwError(Helper::msg("error.update"));
+        }
+        DB::commit();
+
+        return $isUpdated ? Helper::throwSuccess(Helper::msg("update"), redirect()->route('control.access.research.index')) :
+            Helper::throwError(Helper::msg("error.update"));
+    }
+
+    public function editResearchGroup($id){
+        try {
+            $researchGroup = BusinessPartners::findOrfail($id);
+            return view('control_access.research_group.form', compact('researchGroup'));
+        } catch (\Exception $e) {
+            return Helper::throwError(Helper::msg("error"));
+        }
+    }
+
+    public function destroyPartnerById($id)
+    {
+        $partnersToDelete = BusinessPartners::findOrfail($id);
+        try {
+            $isCompany = $partnersToDelete->is_company == 1;
+            $isDeleted = $partnersToDelete->delete();
+            if ($isDeleted) {
+                return $isCompany ? Helper::throwSuccess(Helper::msg("delete"), redirect()->route('control.access.company.index')) :
+                    Helper::throwSuccess(Helper::msg("delete"), redirect()->route('control.access.research.index'));
+            }
+            return Helper::throwError(Helper::msg("error.delete"));
         } catch (\Exception $e) {
             return Helper::throwError(Helper::msg("error.default"));
         }

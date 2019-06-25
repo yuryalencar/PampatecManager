@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Critérios de Avaliação')
+@section('title', 'Empresas')
 
 @section('content_header')
     <h1 class="inline">Empresas</h1>

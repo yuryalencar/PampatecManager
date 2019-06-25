@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Critérios de Avaliação')
+@section('title', 'Grupos de Pesquisa')
 
 @section('content_header')
     <h1 class="inline">Grupos de Pesquisa</h1>
     @can('authorization', 'manager')
-        <a class="btn btn-primary inline pull-right" href="{{route('evaluate.criteria.create')}}"><i class="fa fa-plus"
+        <a class="btn btn-primary inline pull-right" href="{{route('control.access.research.create')}}"><i class="fa fa-plus"
                                                                                                      aria-hidden="true"></i>
-            Nova Grupo</a>
+            Novo Grupo</a>
     @endcan
 @stop
 
@@ -33,7 +33,7 @@
                                 class="btn btn-bitbucket"><i class="fa fa-info-circle"></i>
                         </button>
                         @can('authorization','manager')
-                            <a href="{{route("evaluate.criteria.edit", $researchGroup->id)}}" title="Editar"
+                            <a href="{{route("control.access.research.edit", $researchGroup->id)}}" title="Editar"
                                class="btn btn-openid"><i class="fa fa-edit"></i>
                             </a>
                             <a href="{{route("control.access.research.remove", $researchGroup->id)}}" title="Excluir"

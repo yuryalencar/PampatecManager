@@ -1,0 +1,43 @@
+{
+  "name": "jodit",
+  "description": "Jodit is awesome and usefully wysiwyg editor with filebrowser",
+  "main": [
+    "build/jodit.min.js",
+    "build/jodit.min.css"
+  ],
+  "authors": [
+    {
+      "name": "Chupurnov Valeriy",
+      "email": "chupurnov@gmail.com",
+      "homepage": "http://xdsoft.net/contacts.html"
+    }
+  ],
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "wysiwyg",
+    "jquery",
+    "editor",
+    "rich",
+    "jodit"
+  ],
+  "homepage": "http://xdsoft.net/jodit/",
+  "ignore": [
+    "*",
+    "!build/",
+    "!build/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:xdan/jodit.git"
+  },
+  "version": "3.2.45",
+  "_release": "3.2.45",
+  "_resolution": {
+    "type": "version",
+    "tag": "3.2.45",
+    "commit": "d06c9f81efa76715467a6edd92216e31f0c89b53"
+  },
+  "_source": "https://github.com/xdan/jodit.git",
+  "_target": "^3.2.44",
+  "_originalSource": "jodit"
+}
