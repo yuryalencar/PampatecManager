@@ -1,6 +1,6 @@
 <h5 style="display: inline">Relações com Clientes</h5> <button style="display: inline" type="button" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 @if(isset($plano))
-    <textarea rows="5" type="text"  id="customerRelations" name="customerRelations" placeholder="" class="form-control" value="{{$plano->customerRelations}}"></textarea>
+    <textarea rows="5" type="text"  id="customerRelations" name="customerRelations" placeholder="" class="form-control">{{$plano->customerRelations}}</textarea>
 @else
     <textarea rows="5" type="text" id="customerRelations" name="customerRelations" placeholder="" class="form-control"></textarea>
 @endif
@@ -8,7 +8,7 @@
 
 <h5 style="display: inline">Parcerias Chave:</h5> <button style="display: inline" type="button" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 @if(isset($plano))
-    <textarea rows="5" type="text" id="keyPartnerships" name="keyPartnerships" placeholder="" class="form-control" value="{{$plano->keyPartnerships}}"></textarea>
+    <textarea rows="5" type="text" id="keyPartnerships" name="keyPartnerships" placeholder="" class="form-control">{{$plano->keyPartnerships}}</textarea>
 @else
     <textarea rows="5" type="text" id="keyPartnerships" name="keyPartnerships" placeholder="" class="form-control"></textarea>
 @endif
@@ -16,7 +16,7 @@
 
 <h5 style="display: inline">Canais:</h5> <button style="display: inline" type="button" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 @if(isset($plano))
-    <textarea rows="5" type="text" id="channels" name="channels" placeholder="" class="form-control" value="{{$plano->channels}}"></textarea>
+    <textarea rows="5" type="text" id="channels" name="channels" placeholder="" class="form-control">{{$plano->channels}}</textarea>
 @else
     <textarea rows="5" type="text" id="channels" name="channels" placeholder="" class="form-control"></textarea>
 @endif
@@ -24,7 +24,7 @@
 
 <h5 style="display: inline">Recursos Principais:</h5> <button style="display: inline" type="button" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 @if(isset($plano))
-    <textarea rows="5" type="text" id="mainFeatures" name="mainFeatures" placeholder="" class="form-control" value="{{$plano->mainFeatures}}"></textarea>
+    <textarea rows="5" type="text" id="mainFeatures" name="mainFeatures" placeholder="" class="form-control">{{$plano->mainFeatures}}</textarea>
 @else
     <textarea rows="5" type="text" id="mainFeatures" name="mainFeatures" placeholder="" class="form-control"></textarea>
 @endif
@@ -32,7 +32,7 @@
 
 <h5 style="display: inline">Concorrentes:</h5> <button style="display: inline" type="button" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 @if(isset($plano))
-    <textarea rows="5" type="text" id="competitors" name="competitors" placeholder="" class="form-control" value="{{$plano->competitors}}"></textarea>
+    <textarea rows="5" type="text" id="competitors" name="competitors" placeholder="" class="form-control">{{$plano->competitors}}</textarea>
 @else
     <textarea rows="5" type="text" id="competitors" name="competitors" placeholder="" class="form-control"></textarea>
 @endif
