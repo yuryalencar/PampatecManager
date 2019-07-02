@@ -5,8 +5,8 @@
 @section('content_header')
     <h1 class="inline">Empresas</h1>
     @can('authorization', 'manager')
-        <a class="btn btn-primary inline pull-right" href="{{route('evaluate.criteria.create')}}"><i class="fa fa-plus"
-                                                                                                     aria-hidden="true"></i>
+        <a class="btn btn-primary inline pull-right" href="{{route('control.access.company.create')}}"><i class="fa fa-plus"
+                                                                                                           aria-hidden="true"></i>
             Nova Empresa</a>
     @endcan
 @stop
@@ -33,7 +33,7 @@
                                 class="btn btn-bitbucket"><i class="fa fa-info-circle"></i>
                         </button>
                         @can('authorization','manager')
-                            <a href="{{route("evaluate.criteria.edit", $company->id)}}" title="Editar"
+                            <a href="{{route("control.access.company.edit", $company->id)}}" title="Editar"
                                class="btn btn-openid"><i class="fa fa-edit"></i>
                             </a>
                             <a href="{{route("control.access.company.remove", $company->id)}}" title="Excluir"

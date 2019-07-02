@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AccessControl;
 
 use App\Helpers\Helper;
+use App\Http\Requests\CompanyRequest;
 use App\Http\Requests\ResearchGroupRequest;
 use Illuminate\Http\Request;
 use App\Models\BusinessPartners;
@@ -72,7 +73,8 @@ class BusinessPartnersController extends Controller
             Helper::throwError(Helper::msg("error.update"));
     }
 
-    public function editResearchGroup($id){
+    public function editResearchGroup($id)
+    {
         try {
             $researchGroup = BusinessPartners::findOrfail($id);
             return view('control_access.research_group.form', compact('researchGroup'));
@@ -97,4 +99,64 @@ class BusinessPartnersController extends Controller
         }
 
     }
+
+    public function createCompany()
+    {
+        return view('control_access.company.form');
+    }
+
+    public function storeCompany(CompanyRequest $request)
+    {
+        $companyToSave = $request->except('_token');
+        array_set($companyToSave, "is_company", 1);
+        array_set($companyToSave, "is_research_group", 0);
+
+        DB::beginTransaction();
+        try {
+            $isSaved = BusinessPartners::create($companyToSave);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return Helper::throwError(Helper::msg("error.save"));
+        } catch (\Error $e) {
+            DB::rollback();
+            return Helper::throwError(Helper::msg("error.save"));
+        }
+
+        DB::commit();
+
+        return $isSaved ? Helper::throwSuccess(Helper::msg("create"), redirect()->route('control.access.company.index')) :
+            Helper::throwError(Helper::msg("error.save"));
+    }
+
+    public function updateCompany(CompanyRequest $request)
+    {
+        $dataForUpdateCompany = $request->except('_token');
+        $companyToUpdate = BusinessPartners::find($request->id);
+
+        DB::beginTransaction();
+        try {
+            $isUpdated = $companyToUpdate->update($dataForUpdateCompany);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return Helper::throwError(Helper::msg("error.update"));
+        } catch (\Error $e) {
+            DB::rollback();
+            return Helper::throwError(Helper::msg("error.update"));
+        }
+        DB::commit();
+
+        return $isUpdated ? Helper::throwSuccess(Helper::msg("update"), redirect()->route('control.access.company.index')) :
+            Helper::throwError(Helper::msg("error.update"));
+    }
+
+    public function editCompany($id)
+    {
+        try {
+            $company = BusinessPartners::findOrfail($id);
+            return view('control_access.company.form', compact('company'));
+        } catch (\Exception $e) {
+            return Helper::throwError(Helper::msg("error"));
+        }
+    }
+
 }
