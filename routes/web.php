@@ -44,3 +44,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'avaliacao', 'as' => 'evalua
 
 });
 
+Route::group(['middleware' => ['auth'], 'prefix' => 'ajuda', 'as' => 'help.'], function () {
+
+    Route::group(['middleware' => ['auth'], 'prefix' => 'criterios', 'as' => 'plan.'], function () {
+
+    });
+
+});
+
