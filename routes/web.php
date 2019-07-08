@@ -44,6 +44,38 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'avaliacao', 'as' => 'evalua
 
 });
 
+Route::group(['middleware' => ['auth'], 'prefix' => 'controle', 'as' => 'control.'], function () {
+
+    Route::group(['middleware' => ['auth'], 'prefix' => 'acesso', 'as' => 'access.'], function () {
+
+        Route::group(['middleware' => ['auth'], 'prefix' => 'empresas', 'as' => 'company.'], function () {
+            Route::get('/', ['as' => 'index', 'uses' => 'AccessControl\BusinessPartnersController@indexCompany']);
+            Route::get('/excluidos', ['as' => 'deleted', 'uses' => 'EvaluateCriteriaController@deleted']); // @TODO
+            Route::get('/novo', ['as' => 'create', 'uses' => 'AccessControl\BusinessPartnersController@createCompany']);
+            Route::post('/', ['as' => 'store', 'uses' => 'AccessControl\BusinessPartnersController@storeCompany']);
+            Route::post('/atualizar', ['as' => 'update', 'uses' => 'AccessControl\BusinessPartnersController@updateCompany']);
+            Route::get('/editar/{id}', ['as' => 'edit', 'uses' => 'AccessControl\BusinessPartnersController@editCompany']);
+            Route::get('/{id}/remover', ['as' => 'remove', 'uses' => 'AccessControl\BusinessPartnersController@destroyPartnerById']);
+            Route::get('/{id}/restaurar', ['as' => 'restore', 'uses' => 'EvaluateCriteriaController@restore']); // @TODO
+            Route::delete('/{id}', ['as' => 'delete', 'uses' => 'AccessControl\BusinessPartnersController@destroyPartnerById']);
+        });
+
+        Route::group(['middleware' => ['auth'], 'prefix' => 'grupos', 'as' => 'research.'], function () {
+            Route::get('/', ['as' => 'index', 'uses' => 'AccessControl\BusinessPartnersController@indexResearchGroup']);
+            Route::get('/excluidos', ['as' => 'deleted', 'uses' => 'EvaluateCriteriaController@deleted']); // @TODO
+            Route::get('/novo', ['as' => 'create', 'uses' => 'AccessControl\BusinessPartnersController@createResearchGroup']);
+            Route::post('/', ['as' => 'store', 'uses' => 'AccessControl\BusinessPartnersController@storeResearchGroup']);
+            Route::post('/atualizar', ['as' => 'update', 'uses' => 'AccessControl\BusinessPartnersController@updateResearchGroup']);
+            Route::get('/editar/{id}', ['as' => 'edit', 'uses' => 'AccessControl\BusinessPartnersController@editResearchGroup']);
+            Route::get('/{id}/remover', ['as' => 'remove', 'uses' => 'AccessControl\BusinessPartnersController@destroyPartnerById']);
+            Route::get('/{id}/restaurar', ['as' => 'restore', 'uses' => 'EvaluateCriteriaController@restore']); // @TODO
+            Route::delete('/{id}', ['as' => 'delete', 'uses' => 'AccessControl\BusinessPartnersController@destroyPartnerById']);
+        });
+
+    });
+
+});
+
 Route::group(['middleware' => ['auth'], 'prefix' => 'ajuda', 'as' => 'help.'], function () {
 
     Route::group(['middleware' => ['auth'], 'prefix' => 'criterios', 'as' => 'plan.'], function () {

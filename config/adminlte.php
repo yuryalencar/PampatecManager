@@ -108,82 +108,33 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+//        Tipo de acesso
+        'CONTROLE DE ACESSO',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Pessoas',
+            'icon' => 'users',
+            'url'  => '#',
+//            'url'  => 'controle/acesso/pessoas',
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        'ACCOUNT SETTINGS',
-        [
-            'text' => 'Role',
-            'url'  => 'admin/settings',
-            'icon' => 'user',
+            'text' => 'Salas',
+            'icon' => 'address-card',
+            'url'  => '#',
+//            'url'  => 'controle/acesso/pessoas',
         ],
         [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
+            'text' => 'Empresas',
+            'icon' => 'building',
+            'url'  => 'controle/acesso/empresas',
         ],
         [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
-            'submenu' => [
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-            ],
+            'text'        => 'Grupos de Pesquisa',
+            'url'         => 'controle/acesso/grupos',
+            'icon'        => 'graduation-cap',
+//            'label'       => 4,
+//            'label_color' => 'success',
         ],
-        'LABELS',
-        [
-            'text'       => 'Important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'Information',
-            'icon_color' => 'aqua',
-        ],
-        'PLANO DE NEGÓCIO',
+        'PLANOS DE NEGÓCIO',
         [
             'text' => 'Novo Plano',
             'url' => 'plano/novoplano',
@@ -203,22 +154,22 @@ return [
             'icon' => 'list'
 //            'can'  => 'entrepreneur',
         ],
-        'RESTAURAÇÕES',
+        'LIXEIRA',
         [
             'text' => 'Critérios de Avaliação',
             'url' => 'avaliacao/criterios/excluidos',
             'icon' => 'list'
 //            'can'  => 'entrepreneur',
         ],
-        'CONFIGURAÇÕES DA CONTA',
+        'CONFIGURAÇÕES',
         [
-            'text' => 'Dados Pessoais',
-            'url' => 'admin/settings',
+            'text' => 'Perfis',
+            'url'  => 'configuracoes/perfis',
             'icon' => 'user',
         ],
         [
-            'text' => 'Mudar Senha',
-            'url' => 'admin/settings',
+            'text' => 'Trocar Senha',
+            'url'  => 'configuracoes/senha',
             'icon' => 'lock',
         ],
     ],
