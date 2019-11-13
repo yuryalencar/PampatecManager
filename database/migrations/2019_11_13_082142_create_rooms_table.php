@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBusinessPartnersTable extends Migration
+class CreateRoomsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateBusinessPartnersTable extends Migration
      */
     public function up()
     {
-        Schema::create('business_partners', function (Blueprint $table) {
+        Schema::create('rooms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->string('email')->nullable();
-            $table->string('cnpj','20')->nullable();
-            $table->string('responsible')->nullable();
-            $table->boolean('is_company')->nullable();
-            $table->boolean('is_research_group')->nullable();
-            $table->timestampsTz();
+            $table->longText('description')->nullable();
+            $table->double('value_of_the_meters')->nullable();
+            $table->double('size')->nullable();
             $table->softDeletesTz();
+            $table->timestamps();
         });
     }
 
@@ -33,6 +31,6 @@ class CreateBusinessPartnersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('business_partners');
+        Schema::dropIfExists('rooms');
     }
 }
