@@ -60,14 +60,16 @@
     </div>
 
     <script>
-        window.onload = enableContact();
-        ButtonSubmeter();
+
         document.getElementById('navContact').style.color = 'red';
         document.getElementById('navBusiness').style.color = 'red';
         document.getElementById('navFinancialPlan').style.color = 'red';
         document.getElementById('navMarketAnalysis').style.color = 'red';
         document.getElementById('navPeopleManagement').style.color = 'red';
         document.getElementById('navProductServer').style.color = 'red';
+
+        window.onload = enableContact();
+        ButtonSubmeter();
 
         function disableAll() {
             document.getElementById('contact').setAttribute('hidden', 'true');
