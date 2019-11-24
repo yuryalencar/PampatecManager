@@ -26,11 +26,11 @@ class BusinessPlan extends Migration
             $table->longText('valueOffer')->nullable();
             $table->longText('keyActivities')->nullable();
 
-            //          Contacts
-            $table->text('entrepreneursEmail')->nullable();
+            // Contacts
+//            $table->text('entrepreneursEmail')->nullable();
             $table->text('companyProject')->nullable();
 
-            //          Market Analysis
+            // Market Analysis
             $table->longText('customerRelations')->nullable();
             $table->longText('keyPartnerships')->nullable();
             $table->longText('channels')->nullable();
@@ -53,6 +53,11 @@ class BusinessPlan extends Migration
             $table->longText('businessUniversity')->nullable();
             $table->longText('enterpriseCommunityGovernment')->nullable();
             $table->longText('infrastructure')->nullable();
+
+            // Financial Plan
+            $table->longText('revenueSources')->nullable();
+            $table->longText('costStructure')->nullable();
+            $table->longText('initialInvestment')->nullable();
 
             $table->timestampsTz();
             $table->softDeletesTz();

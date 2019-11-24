@@ -10,7 +10,7 @@ class Role extends Model
         'name'
     ];
 
-    public static $superUser = "#system.root#";
+    public static $superUser = "manager";
 
     public static function getSuperUser()
     {

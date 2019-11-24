@@ -113,24 +113,28 @@ return [
         [
             'text' => 'Pessoas',
             'icon' => 'users',
-            'url'  => '#',
+            'url' => '#',
+            'can' => 'secretary'
 //            'url'  => 'controle/acesso/pessoas',
         ],
         [
             'text' => 'Salas',
             'icon' => 'address-card',
-            'url'  => '#',
+            'url' => '#',
+            'can' => 'secretary'
 //            'url'  => 'controle/acesso/pessoas',
         ],
         [
             'text' => 'Empresas',
             'icon' => 'building',
-            'url'  => 'controle/acesso/empresas',
+            'url' => 'controle/acesso/empresas',
+            'can' => 'secretary'
         ],
         [
-            'text'        => 'Grupos de Pesquisa',
-            'url'         => 'controle/acesso/grupos',
-            'icon'        => 'graduation-cap',
+            'text' => 'Grupos de Pesquisa',
+            'url' => 'controle/acesso/grupos',
+            'icon' => 'graduation-cap',
+            'can' => 'secretary'
 //            'label'       => 4,
 //            'label_color' => 'success',
         ],
@@ -138,38 +142,46 @@ return [
         [
             'text' => 'Novo Plano',
             'url' => 'plano/novoplano',
-            'icon' => 'plus'
-//            'can'  => 'entrepreneur',
+            'icon' => 'plus',
+            'can'  => 'entrepreneur',
         ],
         [
             'text' => 'Planos Existentes',
             'url' => 'plano/planosexistentes',
-            'icon' => 'list-alt'
-//            'can'  => 'entrepreneur',
+            'icon' => 'list-alt',
+            'can' => 'entrepreneur',
         ],
-        'AVALIAÇÃO DE PLANOS',
+        'AVALIAÇÃO',
         [
-            'text' => 'Critérios',
+            'text' => 'Critérios de Avaliação',
             'url' => 'avaliacao/criterios',
-            'icon' => 'list'
-//            'can'  => 'entrepreneur',
+            'icon' => 'list',
+            'can'  => 'evaluator',
+        ],
+        'CONFIGURAÇÕES',
+        [
+            'text' => 'Gerenciamento de Ajudas',
+//            'url' => 'avaliacao/criterios',
+            'url'  => '#',
+            'icon' => 'list',
+            'can'  => 'manager',
         ],
         'LIXEIRA',
         [
-            'text' => 'Critérios de Avaliação',
+            'text' => 'Restauração de Critérios',
             'url' => 'avaliacao/criterios/excluidos',
-            'icon' => 'list'
-//            'can'  => 'entrepreneur',
+            'icon' => 'list',
+            'can'  => 'manager',
         ],
         'CONFIGURAÇÕES',
         [
             'text' => 'Perfis',
-            'url'  => 'configuracoes/perfis',
+            'url' => 'configuracoes/perfis',
             'icon' => 'user',
         ],
         [
             'text' => 'Trocar Senha',
-            'url'  => 'configuracoes/senha',
+            'url' => 'configuracoes/senha',
             'icon' => 'lock',
         ],
     ],
@@ -207,7 +219,7 @@ return [
 
     'plugins' => [
         'datatables' => true,
-        'select2'    => true,
-        'chartjs'    => true,
+        'select2' => true,
+        'chartjs' => true,
     ],
 ];

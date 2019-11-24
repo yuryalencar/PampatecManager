@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersRolesTableSeeder::class);
         $this->call(EvaluateCriteriaSeeder::class);
         $this->call(BusinessPartnersSeeder::class);
-        $this->call(RoomTableSeeder::class);
-        $this->call(ContractTableSeeder::class);
+//        $this->call(RoomTableSeeder::class);
+//        $this->call(ContractTableSeeder::class);
+        $this->call(HelpTableSeeder::class);
     }
 }

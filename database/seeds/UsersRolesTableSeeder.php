@@ -27,5 +27,7 @@ class UsersRolesTableSeeder extends Seeder
         $users->firstWhere('email', '==', 'empresario@empresario.com')->roles()
             ->attach($roles->firstWhere('name', '==','entrepreneur')->id);
 
+        $users->firstWhere('email', '==', 'secretary@secretary.com')->roles()
+            ->attach($roles->firstWhere('name', '==','secretary')->id);
     }
 }

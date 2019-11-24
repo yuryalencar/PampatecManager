@@ -30,6 +30,27 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('authorization', function ($user, $role) {
             return $this->authorization($user, $role);
         });
+
+
+        Gate::define('admin', function ($user, $role) {
+            return $this->authorization($user, $role);
+        });
+
+        Gate::define('manager', function ($user) {
+            return $this->authorization($user, 'manager');
+        });
+
+        Gate::define('evaluator', function ($user) {
+            return $this->authorization($user, 'evaluator');
+        });
+
+        Gate::define('entrepreneur', function ($user) {
+            return $this->authorization($user, 'entrepreneur');
+        });
+
+        Gate::define('secretary', function ($user) {
+            return $this->authorization($user, 'secretary');
+        });
     }
 
     private function authorization($user, $role)
