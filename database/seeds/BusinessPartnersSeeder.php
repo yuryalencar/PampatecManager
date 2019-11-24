@@ -15,9 +15,7 @@ class BusinessPartnersSeeder extends Seeder
         BusinessPartners::create([
             'name' => 'Zallpy Group Ltda.',
             'responsible' => 'Example User',
-            'responsible_email' => 'exampleEmail@email.com',
-            'room' => 'P36',
-//            'cnpj' => 'Potencial de inovação tecnológica do projeto (Risco x Retorno)',
+            'email' => 'exampleEmail@email.com',
             'is_company' => 1,
             'is_research_group' => 0,
         ]);
@@ -25,11 +23,11 @@ class BusinessPartnersSeeder extends Seeder
         BusinessPartners::create([
             'name' => 'LESSE',
             'responsible' => 'Example User 2',
-            'responsible_email' => 'exampleEmail 2@email.com',
-            'room' => 'P36',
-//            'cnpj' => 'Potencial de inovação tecnológica do projeto (Risco x Retorno)',
+            'email' => 'exampleEmail 2@email.com',
             'is_company' => 0,
             'is_research_group' => 1,
         ]);
+
+        factory(BusinessPartners::class, 50)->create();
     }
 }
