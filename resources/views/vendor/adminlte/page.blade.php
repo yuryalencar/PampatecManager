@@ -191,7 +191,7 @@
                         @if (session('status'))
                                 <button type="submit" id="btnsuccessfake" hidden>to show error</button>
                                 <div class="row col-lg-12">
-                                    <div id="modal-success" data-izimodal-title="Operação Realizada com Sucesso ! :)"
+                                    <div id="modal-success" data-izimodal-title="{{session('status')}}"
                                          data-izimodal-subtitle="Tudo ocorreu como o esperado fique tranquilo !">
                                     </div>
                                 </div>

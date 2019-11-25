@@ -78,6 +78,32 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'controle', 'as' => 'control
             Route::delete('/{id}', ['as' => 'delete', 'uses' => 'AccessControl\BusinessPartnersController@destroyPartnerById']);
         });
 
+        Route::group(['middleware' => ['auth'], 'prefix' => 'salas', 'as' => 'room.'], function () {
+            Route::get('/', ['as' => 'index', 'uses' => 'AccessControl\RoomController@index']);
+//            Route::get('/excluidos', ['as' => 'deleted', 'uses' => 'EvaluateCriteriaController@deleted']); // @TODO
+            Route::get('/nova', ['as' => 'create', 'uses' => 'AccessControl\RoomController@create']);
+            Route::post('/', ['as' => 'store', 'uses' => 'AccessControl\RoomController@store']);
+            Route::post('/atualizar', ['as' => 'update', 'uses' => 'AccessControl\RoomController@update']);
+            Route::get('/editar/{id}', ['as' => 'edit', 'uses' => 'AccessControl\RoomController@edit']);
+            Route::get('/{id}/remover', ['as' => 'remove', 'uses' => 'AccessControl\RoomController@destroy']);
+//            Route::get('/{id}/restaurar', ['as' => 'restore', 'uses' => 'EvaluateCriteriaController@restore']); // @TODO
+        });
+
+        Route::group(['middleware' => ['auth'], 'prefix' => 'pessoas', 'as' => 'people.'], function () {
+            Route::get('/', ['as' => 'index', 'uses' => 'AccessControl\PersonController@index']);
+//            Route::get('/excluidos', ['as' => 'deleted', 'uses' => 'EvaluateCriteriaController@deleted']); // @TODO
+            Route::get('/nova', ['as' => 'create', 'uses' => 'AccessControl\PersonController@create']);
+            Route::post('/', ['as' => 'store', 'uses' => 'AccessControl\PersonController@store']);
+            Route::post('/atualizar', ['as' => 'update', 'uses' => 'AccessControl\PersonController@update']);
+            Route::get('/editar/{id}', ['as' => 'edit', 'uses' => 'AccessControl\PersonController@edit']);
+            Route::get('/{id}/remover', ['as' => 'remove', 'uses' => 'AccessControl\PersonController@destroy']);
+            Route::get('/{id}/permissoes', ['as' => 'permissions', 'uses' => 'AccessControl\PersonController@permissionsIndex']);
+            Route::get('/{id}/permissoes/nova', ['as' => 'new.permission', 'uses' => 'AccessControl\PersonController@permissionsNew']);
+            Route::post('/{id}/permissoes/nova/{idRoom}', ['as' => 'store.permission', 'uses' => 'AccessControl\PersonController@permissionsStore']);
+            Route::get('/{id}/permissoes/remover/{idRoom}', ['as' => 'remove.permission', 'uses' => 'AccessControl\PersonController@permissionsDestroy']);
+//            Route::get('/{id}/restaurar', ['as' => 'restore', 'uses' => 'EvaluateCriteriaController@restore']); // @TODO
+        });
+
     });
 
 });

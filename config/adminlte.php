@@ -113,14 +113,14 @@ return [
         [
             'text' => 'Pessoas',
             'icon' => 'users',
-            'url' => '#',
+            'url' => 'controle/acesso/pessoas',
             'can' => 'secretary'
 //            'url'  => 'controle/acesso/pessoas',
         ],
         [
             'text' => 'Salas',
             'icon' => 'address-card',
-            'url' => '#',
+            'url' => 'controle/acesso/salas',
             'can' => 'secretary'
 //            'url'  => 'controle/acesso/pessoas',
         ],
