@@ -9,14 +9,47 @@
 
 <br/>
 
-
 <h5 style="display: inline">E-mail dos Empreendedores: </h5>
-<button style="display: inline" type="button" class="btn btn-link pull-right" id="entrepreneursEmailId"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
+<button style="display: inline" id="entrepreneursEmailId" type="button" class="btn btn-link"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
+<button type="button" onclick="adicionarEmail()" class="btn btn-success pull-right" style="font-size: 75%"><i class="fa fa-plus" aria-hidden="true"></i></button>
 @if(isset($plano))
-    <input type="text" id="entrepreneursEmail" name="entrepreneursEmail" placeholder="" class="form-control" value="{{$plano->entrepreneursEmail}}">
+    <table class="table table-bordered table-hover">
+        <tbody>
+        <tr>
+            <td></td>
+            <td>Excluir</td>
+        </tr>
+        </tbody>
+    </table>
 @else
-    <input type="text" id="entrepreneursEmail" name="entrepreneursEmail" placeholder="" class="form-control">
+    <table id="emailTable" class="table table-bordered table-hover">
+        <tbody id="emailBody">
+        </tbody>
+    </table>
 @endif
+    <script>
+        var cont = 0;
+
+        function adicionarEmail() {
+            var table = document.getElementById("emailBody");
+
+            var row = table.insertRow(0);
+            row.setAttribute("id", cont);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.innerHTML = "<input type=\"text\" name=\"test\" value=\"\" />";
+            cell2.innerHTML = "<button type=\"button\" onclick=\"deletarEmail("+cont+")\" class=\"btn btn-google\"><i class=\"fa fa-trash-o\"></i></button>";
+            cont++;
+        }
+
+
+        function deletarEmail(id) {
+            document.getElementById(id).remove();
+        }
+    </script>
+
+
+
 
 <div id="modal-companyProject" data-izimodal-loop="" data-izimodal-title="Empresa/Projeto:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
