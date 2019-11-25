@@ -31,9 +31,14 @@
                 <td>{{$criteria->score}}</td>
                 <td>
                     <div class="btn-group">
-                        <button type="submit" title="Mais Detalhes" name="id_record" value="{{$criteria->id}}"
+                        <button type="button" onclick="" title="Mais Detalhes" name="id_record" value="{{$criteria->id}}"
                                 class="btn btn-bitbucket"><i class="fa fa-info-circle"></i>
                         </button>
+                        <div id={{"modal-".$criteria->id}} data-izimodal-group="group1" data-izimodal-loop=""
+                             data-izimodal-title="オプション設定モーダル" data-izimodal-subtitle="サブタイトル">
+                            <p>{{$criteria->description}}</p>
+                        </div>
+
                         @can('authorization','manager')
                             <a href="{{route("evaluate.criteria.edit", $criteria->id)}}" title="Editar"
                                class="btn btn-openid"><i class="fa fa-edit"></i>
@@ -49,4 +54,19 @@
         </tbody>
     </table>
     {{ $criterias->links() }}
+
+    <script>
+        function openModal(modalId){
+
+            $('#'+modalId).iziModal('open');
+        }
+        $('#modal-options').iziModal({
+            headerColor: '#26A69A',
+            width: '50%',
+            overlayColor: 'rgba(0, 0, 0, 0.5)',
+            fullscreen: false,
+            transitionIn: 'fadeInUp',
+            transitionOut: 'fadeOutDown'
+        });
+    </script>
 @stop

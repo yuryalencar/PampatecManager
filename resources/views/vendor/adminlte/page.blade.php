@@ -24,7 +24,7 @@
         window.onload = initDataTable;
 
         function initDataTable() {
-            if(document.getElementsByClassName('table').item(0) != null){
+            if (document.getElementsByClassName('table').item(0) != null) {
                 $('.table').DataTable({
                     "paging": true,
                     "lengthChange": false,
@@ -33,7 +33,7 @@
                     "info": true,
                     "autoWidth": false,
                     "language": {
-                        "sProcessing":    "Processando...",
+                        "sProcessing": "Processando...",
                         "search": "Pesquisar:",
                         "lengthMenu": "Exibir _MENU_ registros por página",
                         "zeroRecords": "Nada encontrado - Desculpe",
@@ -42,13 +42,13 @@
                         "infoEmpty": "Nenhum registro disponível",
                         "infoFiltered": "(filtrado do total de registros _MAX_)",
                         "oPaginate": {
-                            "sFirst":    "Primeira",
-                            "sLast":    "Última",
-                            "sNext":    "Próxima",
+                            "sFirst": "Primeira",
+                            "sLast": "Última",
+                            "sNext": "Próxima",
                             "sPrevious": "Anterior"
                         },
                         "oAria": {
-                            "sSortAscending":  ": Ativar ordenação da coluna de maneira ascendente",
+                            "sSortAscending": ": Ativar ordenação da coluna de maneira ascendente",
                             "sSortDescending": ": Ativar ordenação da coluna de maneira descendente"
                         },
                     }
@@ -159,19 +159,63 @@
 
                     <!-- Main content -->
                     <section class="content">
-                        @if(!empty($errors->first()))
+
+                        @if(Session::has('errors'))
+                            <button type="submit" id="btnalertfake" hidden>to show error</button>
                             <div class="row col-lg-12">
-                                <div class="alert alert-danger">
-                                    <span>{{ $errors->first() }}</span>
+                                <div id="modal-alert" data-izimodal-title="{{ $errors->first() }}"
+                                     data-izimodal-subtitle="Ocorreu um erro :(">
                                 </div>
                             </div>
+                            <script>
+                                $(document).ready(function () {
+                                    setTimeout(function(){ document.getElementById('btnalertfake').click(); }, 100);
+
+                                    $(document).on('click', '#btnalertfake', function (event) {
+                                        event.preventDefault();
+                                        $('#modal-alert').iziModal('open');
+                                    });
+
+                                    $('#modal-alert').iziModal({
+                                        headerColor: '#d43838',
+                                        width: 400,
+                                        timeout: 10000,
+                                        pauseOnHover: true,　//マウスオーバーでカウントダウン停止
+                                        timeoutProgressbar: true, //プログレスバーの表示
+                                        attached: 'bottom' //アラートの表示位置 top or bottom or　指定なしで中央
+                                    });
+                                });
+                            </script>
                         @endif
 
                         @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
+                                <button type="submit" id="btnsuccessfake" hidden>to show error</button>
+                                <div class="row col-lg-12">
+                                    <div id="modal-success" data-izimodal-title="Operação Realizada com Sucesso ! :)"
+                                         data-izimodal-subtitle="Tudo ocorreu como o esperado fique tranquilo !">
+                                    </div>
+                                </div>
+                                <script>
+                                    $(document).ready(function () {
+                                        setTimeout(function(){ document.getElementById('btnsuccessfake').click(); }, 100);
+
+                                        $(document).on('click', '#btnsuccessfake', function (event) {
+                                            event.preventDefault();
+                                            $('#modal-success').iziModal('open');
+                                        });
+
+                                        $('#modal-success').iziModal({
+                                            headerColor: '#00a65a',
+                                            width: '50%', //横幅
+                                            overlayColor: 'rgba(0, 0, 0, 0.5)', //モーダルの背景色
+                                            fullscreen: false, //全画面表示
+                                            timeout: 3000,
+                                            transitionIn: 'fadeInUp', //表示される時のアニメーション
+                                            transitionOut: 'fadeOutDown' //非表示になる時のアニメーション
+                                        });
+                                    });
+                                </script>
+                            @endif
                         @yield('content')
 
                     </section>

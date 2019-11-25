@@ -31,9 +31,31 @@
                 <td>{{$criteria->score}}</td>
                 <td>
                     <div class="btn-group">
-                        <button type="submit" title="Mais Detalhes" name="id_record" value="{{$criteria->id}}"
+                        <button type="button" id="btn-{{$criteria->id}}" onclick="" title="Mais Detalhes"
+                                name="id_record" value="{{$criteria->id}}"
                                 class="btn btn-bitbucket"><i class="fa fa-info-circle"></i>
                         </button>
+                        <div id="modal-{{$criteria->id}}" data-izimodal-group="group1" data-izimodal-loop=""
+                             data-izimodal-title="{{$criteria->title}}"
+                             data-izimodal-subtitle="Pontuação Máxima: {{$criteria->score}}">
+                            {!! $criteria->description !!}
+                        </div>
+                        <script>
+                            $(document).on('click', "#btn-{{$criteria->id}}", function (event) {
+                                event.preventDefault();
+                                $("#modal-{{$criteria->id}}").iziModal('open');
+                            });
+
+                            $("#modal-{{$criteria->id}}").iziModal({
+                                headerColor: '#26A69A',
+                                width: '50%',
+                                overlayColor: 'rgba(0, 0, 0, 0.5)',
+                                fullscreen: false,
+                                transitionIn: 'fadeInUp',
+                                transitionOut: 'fadeOutDown'
+                            });
+                        </script>
+
                         @can('authorization','manager')
                             <a href="{{route("evaluate.criteria.edit", $criteria->id)}}" title="Editar"
                                class="btn btn-openid"><i class="fa fa-edit"></i>

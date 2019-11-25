@@ -24,10 +24,7 @@
                 <td>
                     <div class="btn-group">
                         @can('authorization','manager')
-                            <div id="modal"> <!-- data-iziModal-fullscreen="true"  data-iziModal-title="Welcome"  data-iziModal-subtitle="Subtitle"  data-iziModal-icon="icon-home" -->
-                                <!-- Modal content -->
-                            </div>
-                            <a onclick="exampleModal()" title="Restaurar"
+                            <a href="{{route('evaluate.criteria.restore', $criteria->id)}}" type="submit" title="Restaurar"
                                class="btn btn-github"><i class="fa fa-refresh"></i>
                             </a>
                         @endcan

@@ -136,7 +136,7 @@ class EvaluateCriteriaController extends Controller
         DB::commit();
 
         if ($result) {
-            return Helper::throwSuccess(Helper::msg("update"), redirect()->route('evaluate.criteria.index'));
+            return Helper::throwSuccess(Helper::msg("update"), redirect()->route('evaluate.criteria.deleted'));
         } else {
             return Helper::throwError(Helper::msg("error.update"));
         }

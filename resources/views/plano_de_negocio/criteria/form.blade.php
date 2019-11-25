@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Ajuda para Plano de Negócio')
+@section('title', 'Critérios de Avaliação')
 
 @section('content_header')
     @if(isset($evaluateCriteria))
