@@ -28,6 +28,12 @@ $this->group(['middleware' => ['auth'], 'prefix' => 'plano'], function(){
     $this->get('destroy', 'BusinessPlanController@destroy')->name('destroy.plano');
 });
 
+$this->group(['middleware' => ['auth'], 'prefix' => 'ajuda'], function(){
+    $this->get('editarajuda/{id}', 'HelpController@abrirForm')->name('editar.ajuda');
+    $this->post('salvarajuda', 'HelpController@update')->name('salvar.ajuda');
+    $this->get('listarajuda', 'HelpController@listar')->name('listar.ajuda');
+});
+
 Route::group(['middleware' => ['auth'], 'prefix' => 'avaliacao', 'as' => 'evaluate.'], function () {
 
     Route::group(['middleware' => ['auth'], 'prefix' => 'criterios', 'as' => 'criteria.'], function () {

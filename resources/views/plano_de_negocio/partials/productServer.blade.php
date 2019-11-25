@@ -163,49 +163,49 @@
 
 <div id="modal-stageEvolution" data-izimodal-loop="" hidden data-izimodal-title="Estágio de Evolução:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
-        Qual o estágio atual de evolução do produto ou serviço proposto?
+        {!!$allhelp['10']->description!!}
     </p>
 </div>
 
 <div id="modal-technologyProcesses" data-izimodal-loop="" hidden data-izimodal-title="Tecnologias e Processos (Não Poluentes):" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
-        Como nosso projeto está alinhado com a preservação de recursos naturais, sustentabilidade e possui valores nesse sentido?
+        {!!$allhelp['11']->description!!}
     </p>
 </div>
 
 <div id="modal-innovationPotential" data-izimodal-loop="" hidden data-izimodal-title="Potencial de Inovação Tecnológica:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
-        Qual a capacidade de gerar produtos ou serviços inovadores, que agreguem o uso de novas tecnologias?
+        {!!$allhelp['12']->description!!}
     </p>
 </div>
 
 <div id="modal-application" data-izimodal-loop="" hidden data-izimodal-title="Aplicações:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
-        A quem se aplica? </br> como? </br> De que maneira?
+        {!!$allhelp['13']->description!!}
     </p>
 </div>
 
 <div id="modal-expectedDifficulties" data-izimodal-loop="" hidden data-izimodal-title="Dificuldades Esperadas:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
-        Quais são nossas principais limitações?
+        {!!$allhelp['14']->description!!}
     </p>
 </div>
 
 <div id="modal-businessUniversity" data-izimodal-loop="" hidden data-izimodal-title="Interação entre Empresa e Universidade:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
-        Em que sentido seremos parceiros da Universidade
+        {!!$allhelp['15']->description!!}
     </p>
 </div>
 
 <div id="modal-enterpriseCommunityGovernment" data-izimodal-loop="" hidden data-izimodal-title="Interação entre Empresa, Comunidade e Governo:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
-        Qual será nossa importância para o meio em que estamos inseridos? Teremos relação com todos os envolvidos?
+        {!!$allhelp['16']->description!!}
     </p>
 </div>
 
 <div id="modal-infrastructure" data-izimodal-loop="" hidden data-izimodal-title="Infraestrutura necessária para o Desenvolvimento e Produção:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
-        Quanto de espaço será necessário? </br> Mobiliário? </br> Equipamentos?
+        {!!$allhelp['17']->description!!}
     </p>
 </div>
 
