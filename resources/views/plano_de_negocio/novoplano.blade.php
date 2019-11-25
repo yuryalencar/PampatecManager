@@ -5,12 +5,12 @@
 @section('content_header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li><a id="navContact" onclick="enableContact()">Contatos</a></li>
-            <li><a id="navBusiness" onclick="enableBusiness()">O Negócio</a></li>
-            <li><a id="navMarketAnalysis" onclick="enableMarketAnalysis()">Análise de Mercado</a></li>
-            <li><a id="navProductServer" onclick="enableProductServer()">Produto ou Serviço</a></li>
-            <li><a id="navPeopleManagement" onclick="enablePeopleManagement()">Gestão de Pessoas</a></li>
-            <li><a id="navFinancialPlan" onclick="enableFinancialPlan()">Plano Financeiro</a></li>
+            <li><a id="navContact" style="cursor: pointer" onclick="enableContact()">Contatos</a></li>
+            <li><a id="navBusiness" style="cursor: pointer" onclick="enableBusiness()">O Negócio</a></li>
+            <li><a id="navMarketAnalysis" style="cursor: pointer" onclick="enableMarketAnalysis()">Análise de Mercado</a></li>
+            <li><a id="navProductServer" style="cursor: pointer" onclick="enableProductServer()">Produto ou Serviço</a></li>
+            <li><a id="navPeopleManagement" style="cursor: pointer" onclick="enablePeopleManagement()">Gestão de Pessoas</a></li>
+            <li><a id="navFinancialPlan" style="cursor: pointer" onclick="enableFinancialPlan()">Plano Financeiro</a></li>
         </ol>
     </nav>
 @stop

@@ -11,13 +11,25 @@
 
 <h5 style="display: inline">E-mail dos Empreendedores: </h5>
 <button style="display: inline" id="entrepreneursEmailId" type="button" class="btn btn-link"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
-<button type="button" onclick="adicionarEmail()" class="btn btn-success pull-right" style="font-size: 75%"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
+<br/>
+
+<table class="table" >
+    <tr style="background: white">
+        <td>
+            <input type="email" id="email" placeholder="Insira o e-mail" class="form-control"/>
+        </td>
+        <td>
+            <button type="button" onclick="adicionarEmail()" class="btn btn-success pull-right" style="font-size: 75%"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </td>
+    </tr>
+</table>
+
+
 @if(isset($plano))
     <table class="table table-bordered table-hover">
-        <tbody>
+        <tbody id="emailBody">
         <tr>
-            <td></td>
-            <td>Excluir</td>
         </tr>
         </tbody>
     </table>
@@ -27,26 +39,27 @@
         </tbody>
     </table>
 @endif
-    <script>
-        var cont = 0;
-
-        function adicionarEmail() {
+<script>
+    var cont = 0;
+    function adicionarEmail() {
+        if(document.getElementById("email").value != ""){
             var table = document.getElementById("emailBody");
-
             var row = table.insertRow(0);
             row.setAttribute("id", cont);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
-            cell1.innerHTML = "<input type=\"text\" name=\"test\" value=\"\" />";
+            cell1.innerHTML = $("#email").val();
             cell2.innerHTML = "<button type=\"button\" onclick=\"deletarEmail("+cont+")\" class=\"btn btn-google\"><i class=\"fa fa-trash-o\"></i></button>";
             cont++;
+
+            document.getElementById("email").value = "";
         }
 
-
-        function deletarEmail(id) {
-            document.getElementById(id).remove();
-        }
-    </script>
+    }
+    function deletarEmail(id) {
+        document.getElementById(id).remove();
+    }
+</script>
 
 
 

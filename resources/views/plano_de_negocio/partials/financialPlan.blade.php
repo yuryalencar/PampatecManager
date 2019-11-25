@@ -33,12 +33,7 @@
             <th class="td-title"></th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>Editar Excluir</td>
-        </tr>
+        <tbody id="custoFixoBody">
         </tbody>
     </table>
 @else
@@ -89,12 +84,7 @@
             <th class="td-title"></th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>Editar Excluir</td>
-        </tr>
+        <tbody id="custoVariavelBody">
         </tbody>
     </table>
 @else
