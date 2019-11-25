@@ -12,6 +12,8 @@
 <h5 style="display: inline">E-mail dos Empreendedores: </h5>
 <button style="display: inline" id="entrepreneursEmailId" type="button" class="btn btn-link"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 
+<div id="inputshere"></div>
+
 <br/>
 
 <table class="table" >
@@ -48,7 +50,13 @@
             row.setAttribute("id", cont);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
-            cell1.innerHTML = $("#email").val();
+            var input = document.createElement('input');
+            input.setAttribute('name',"emails[]");
+            input.setAttribute('value',  document.getElementById('email').value);
+            input.setAttribute('hidden', 'true');
+
+            document.getElementById('inputshere').appendChild(input);
+            cell1.innerHTML = input.getAttribute('value');
             cell2.innerHTML = "<button type=\"button\" onclick=\"deletarEmail("+cont+")\" class=\"btn btn-google\"><i class=\"fa fa-trash-o\"></i></button>";
             cont++;
 

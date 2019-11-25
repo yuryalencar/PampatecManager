@@ -25,16 +25,18 @@
                 <td>{{$plan->status}}</td>
                 <td>
                     <div class="btn-group">
-                        @can('authorization','manager')
+                        @can('authorization','entrepreneur')
                             <div class="btn-group">
                                 <a href="{{route('editar.plano', $plan->id)}}" title="Editar"
                                    class="btn btn-bitbucket"><i class="fa fa-edit"></i>
                                 </a>
-                                <form action="{{route('destroy.plano')}}" method="GET" style="display: inline">
-                                    <button type="submit" title="Excluir" name="id" value="{{$plan->id}}"
-                                            class="btn btn-google"><i class="fa fa-trash-o"></i>
-                                    </button>
-                                </form>
+                                @if($plan->owner_id == auth()->user()->id || auth()->user()->roles == 'admin')
+                                    <form action="{{route('destroy.plano')}}" method="GET" style="display: inline">
+                                        <button type="submit" title="Excluir" name="id" value="{{$plan->id}}"
+                                                class="btn btn-google"><i class="fa fa-trash-o"></i>
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
                         @endcan
                     </div>

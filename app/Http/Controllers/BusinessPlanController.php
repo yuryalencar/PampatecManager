@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Mail\SendMailInvitedUser;
 use App\Models\BusinessPlan;
 use App\Models\Help;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class BusinessPlanController extends Controller
 {
@@ -25,11 +30,39 @@ class BusinessPlanController extends Controller
 
     public function store(Request $request)
     {
-        $dataToStore = $request->except('_token', 'entrepreneursEmail');
+        $dataToStore = $request->except('_token', 'entrepreneursEmail', 'emails');
         DB::beginTransaction();
 
         try {
             $result = BusinessPlan::create($dataToStore);
+            if(isset($request->emails)) {
+                foreach ($request->emails as $email) {
+                    try {
+                        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                            $user = User::where('email', $email)->first();
+                            if (isset($user)) {
+                                $user->plans()->attach($result);
+                            } else {
+                                $password = substr(md5(microtime()), 1, rand(8, 12));
+
+                                $user = new User();
+                                $user->password = bcrypt($password);
+                                $user->name = "Empreendedor Convidado";
+                                $user->email = "$email";
+
+                                $user->save();
+
+                                $user->roles()->attach(Role::getEntrepreneur());
+                                $user->plans()->attach($result);
+
+                                Mail::to($user->email)->send(new SendMailInvitedUser($user, $password));
+
+                            }
+                        }
+                    } catch (\Exception $exception) {
+                    }
+                }
+            }
         } catch (\Exception $e) {
             DB::rollback();
             return Helper::throwError(Helper::msg("error.save"));
@@ -39,6 +72,7 @@ class BusinessPlanController extends Controller
         }
 
         DB::commit();
+//        return($password);
         if ($result) {
             return Helper::throwSuccess(Helper::msg("store"), redirect()->route('listar.plano'));
         } else {
