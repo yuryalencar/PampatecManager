@@ -29,10 +29,39 @@
                 <td>{{$company->responsible}}</td>
                 <td>
                     <div class="btn-group">
-                        <button type="submit" title="Mais Detalhes" name="id_record" value="{{$company->id}}"
+                        <button type="button" id="btn-{{$company->id}}" onclick="" title="Mais Detalhes"
+                                name="id_record" value="{{$company->id}}"
                                 class="btn btn-bitbucket"><i class="fa fa-info-circle"></i>
                         </button>
-                        @can('authorization','manager')
+                        <div id="modal-{{$company->id}}" data-izimodal-group="group1" data-izimodal-loop=""
+                             data-izimodal-title="{{$company->name}}"
+                             data-izimodal-subtitle="Empresa">
+                            <br/>
+                            <p class="text-center"><b>Nome da Empresa: </b>{{$company->name}}</p>
+                            <br/>
+                            <p class="text-center"><b>Nome do Responsável: </b>{{$company->responsible}}</p>
+                            <br/>
+                            <p class="text-center"><b>E-mail para Contato: </b>{{$company->email}}</p>
+                            <br/>
+                        </div>
+                        <script>
+                            $(document).on('click', "#btn-{{$company->id}}", function (event) {
+                                event.preventDefault();
+                                $("#modal-{{$company->id}}").iziModal('open');
+                            });
+
+                            $("#modal-{{$company->id}}").iziModal({
+                                headerColor: '#26A69A',
+                                width: '50%',
+                                overlayColor: 'rgba(0, 0, 0, 0.5)',
+                                fullscreen: false,
+                                transitionIn: 'fadeInUp',
+                                transitionOut: 'fadeOutDown'
+                            });
+                        </script>
+
+
+                    @can('authorization','manager')
                             <a href="{{route("control.access.company.edit", $company->id)}}" title="Editar"
                                class="btn btn-openid"><i class="fa fa-edit"></i>
                             </a>

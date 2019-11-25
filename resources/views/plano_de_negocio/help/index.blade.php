@@ -22,7 +22,7 @@
         @foreach($allhelps as $help)
             <tr>
                 <td>{{$help->name}}</td>
-                <td>{{$help->description}}</td>
+                <td>{!!$help->description!!}</td>
                 <td>
                     <div class="btn-group">
                         @can('authorization','manager')

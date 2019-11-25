@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ResearchGroupRequest extends FormRequest
+class RoomRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,12 @@ class ResearchGroupRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'name' => 'required|string',
-            'responsible' => 'required|string',
-            'email' => 'required|string',
+            'description' => 'required|string',
+            'value_of_the_meters' => 'numeric',
+            'size' => 'numeric',
         ];
     }
 
@@ -34,8 +36,9 @@ class ResearchGroupRequest extends FormRequest
     {
         return [
             'name' => 'Nome do Grupo',
-            'responsible' => 'Nome do Responsável',
-            'email' => 'E-mail do Reponsável',
+            'description' => 'Descrição da Sala',
+            'value_of_the_meters' => 'Valor do Metro da Sala',
+            'size' => 'Tamanho da Sala',
         ];
     }
 }
