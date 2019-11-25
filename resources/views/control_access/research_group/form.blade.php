@@ -34,11 +34,11 @@
             </small>
         </div>
         <div class="form-group">
-            <label for="responsible_email">*E-mail do responsável: </label>
-            <input type="text" name="responsible_email" class="form-control"
-                   value="{{old("score",isset($researchGroup)?$researchGroup->responsible_email:null)}}"
+            <label for="email">*E-mail do responsável: </label>
+            <input type="text" name="email" class="form-control"
+                   value="{{old("score",isset($researchGroup)?$researchGroup->email:null)}}"
                    placeholder="Insira o e-mail do responsável aqui"/>
-            <small id="responsible_emailHelp" class="form-text text-muted">Este campo é referente ao e-mail do responsável pelo
+            <small id="emailHelp" class="form-text text-muted">Este campo é referente ao e-mail do responsável pelo
                 grupo de pesquisa que será cadastrado no sistema.
             </small>
         </div>

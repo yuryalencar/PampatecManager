@@ -26,7 +26,7 @@ class ResearchGroupRequest extends FormRequest
         return [
             'name' => 'required|string',
             'responsible' => 'required|string',
-            'responsible_email' => 'required|string',
+            'email' => 'required|string',
         ];
     }
 
@@ -35,7 +35,7 @@ class ResearchGroupRequest extends FormRequest
         return [
             'name' => 'Nome do Grupo',
             'responsible' => 'Nome do Responsável',
-            'responsible_email' => 'E-mail do Reponsável',
+            'email' => 'E-mail do Reponsável',
         ];
     }
 }
