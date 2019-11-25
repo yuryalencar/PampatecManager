@@ -19,21 +19,19 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($allplans as $planos)
+        @foreach($allplans as $plan)
             <tr>
-                <td>{{$planos->companyProject}}</td>
-                <td>{{$planos->status}}</td>
+                <td>{{$plan->companyProject}}</td>
+                <td>{{$plan->status}}</td>
                 <td>
                     <div class="btn-group">
                         @can('authorization','manager')
                             <div class="btn-group">
-                                <form action="{{route('editar.plano')}}" method="GET" style="display: inline">
-                                    <button type="submit" title="Editar" name="id" value="{{$planos->id}}"
-                                            class="btn btn-bitbucket"><i class="fa fa-edit"></i>
-                                    </button>
-                                </form>
+                                <a href="{{route('editar.plano', $plan->id)}}" title="Editar"
+                                   class="btn btn-bitbucket"><i class="fa fa-edit"></i>
+                                </a>
                                 <form action="{{route('destroy.plano')}}" method="GET" style="display: inline">
-                                    <button type="submit" title="Excluir" name="id" value="{{$planos->id}}"
+                                    <button type="submit" title="Excluir" name="id" value="{{$plan->id}}"
                                             class="btn btn-google"><i class="fa fa-trash-o"></i>
                                     </button>
                                 </form>

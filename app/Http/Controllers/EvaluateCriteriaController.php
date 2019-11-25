@@ -55,7 +55,7 @@ class EvaluateCriteriaController extends Controller
     /**
      * Display the specified resource.
      * @TODO
-     * @param  \App\HDCategory $category
+     * @param \App\HDCategory $category
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
@@ -71,7 +71,6 @@ class EvaluateCriteriaController extends Controller
         } catch (\Exception $e) {
             return Helper::throwError(Helper::msg("error"));
         }
-
     }
 
     public function update(EvaluateCriteriaRequest $request)
@@ -103,13 +102,10 @@ class EvaluateCriteriaController extends Controller
 
     public function destroy($id)
     {
-
         $evaluateCriteria = EvaluateCriteria::findOrfail($id);
 
         try {
-
             $result = $evaluateCriteria->delete();
-
             if ($result) {
                 return Helper::throwSuccess(Helper::msg("delete"), redirect()->route('evaluate.criteria.index'));
             } else {
@@ -118,7 +114,6 @@ class EvaluateCriteriaController extends Controller
         } catch (\Exception $e) {
             return Helper::throwError(Helper::msg("error.restore"));
         }
-
     }
 
     public function restore($id)
@@ -134,7 +129,6 @@ class EvaluateCriteriaController extends Controller
             return Helper::throwError(Helper::msg("error.update"));
         }
         DB::commit();
-
         if ($result) {
             return Helper::throwSuccess(Helper::msg("update"), redirect()->route('evaluate.criteria.deleted'));
         } else {
