@@ -162,7 +162,7 @@ return [
         [
             'text' => 'Gerenciamento de Ajudas',
 //            'url' => 'avaliacao/criterios',
-            'url'  => '#',
+            'url'  => 'ajuda/listarajuda',
             'icon' => 'list',
             'can'  => 'manager',
         ],

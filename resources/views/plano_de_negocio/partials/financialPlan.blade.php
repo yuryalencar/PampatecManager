@@ -1,4 +1,4 @@
-<h5 style="display: inline">Fontes de Receita</h5> <button style="display: inline" type="button" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
+<h5 style="display: inline">Fontes de Receita</h5> <button style="display: inline" type="button" id="sourcesRevenueId" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 @if(isset($plano))
     <textarea rows="5" type="text" id="sourcesRevenue" name="sourcesRevenue" placeholder="" class="form-control">{{$plano->sourcesRevenue}}</textarea>
 @else
@@ -6,7 +6,7 @@
 @endif
 <br/>
 
-<h5 style="display: inline">Estrutura de Custo</h5> <button style="display: inline" type="button" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
+<h5 style="display: inline">Estrutura de Custo</h5> <button style="display: inline" type="button" id="costStructureId" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 @if(isset($plano))
     <textarea rows="5" type="text" id="costStructure" name="costStructure" placeholder="" class="form-control">{{$plano->costStructure}}</textarea>
 @else
@@ -14,7 +14,7 @@
 @endif
 <br/>
 
-<h5 style="display: inline">Investimento Inicial</h5> <button style="display: inline" type="button" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
+<h5 style="display: inline">Investimento Inicial</h5> <button style="display: inline" type="button" id="initialInvestmentId" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 @if(isset($plano))
     <textarea rows="5" type="text" id="initialInvestment" name="initialInvestment" placeholder="" class="form-control">{{$plano->initialInvestment}}</textarea>
 @else
@@ -22,7 +22,7 @@
 @endif
 <br/>
 
-<h5 style="display: inline">Custos Fixos:</h5> <button style="display: inline" type="button" class="btn btn-link"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
+<h5 style="display: inline">Custos Fixos:</h5> <button style="display: inline" id="fixedCostId" type="button" class="btn btn-link"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 <button type="button" onclick="adicionarCustoFixo()" class="btn btn-success pull-right" style="font-size: 75%"><i class="fa fa-plus" aria-hidden="true"></i></button>
 @if(isset($plano))
     <table class="table table-bordered table-hover">
@@ -78,7 +78,7 @@
 @endif
 
 
-<h5 style="display: inline">Custos Variável:</h5><button style="display: inline" type="button" class="btn btn-link"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
+<h5 style="display: inline">Custos Variáveis:</h5><button style="display: inline" id="variableCostId" type="button" class="btn btn-link"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 <button type="button" onclick="adicionarCustoVariavel()" class="btn btn-success pull-right" style="font-size: 75%"><i class="fa fa-plus" aria-hidden="true"></i></button>
 @if(isset($plano))
     <table id="custoVariavelTable" class="table table-bordered table-hover">
@@ -132,3 +132,90 @@
         }
     </script>
 @endif
+
+<div id="modal-sourcesRevenue" data-izimodal-loop="" data-izimodal-title="Fonte de Receita" {{--data-izimodal-subtitle=""--}} >
+    <p style="margin: 10px">
+        {!!$allhelp['23']->description!!}
+    </p>
+</div>
+
+<div id="modal-costStructure" data-izimodal-loop="" data-izimodal-title="Estrutura de Custo" {{--data-izimodal-subtitle=""--}} >
+    <p style="margin: 10px">
+        {!!$allhelp['24']->description!!}
+    </p>
+</div>
+
+<div id="modal-initialInvestment" data-izimodal-loop="" data-izimodal-title="Investimento Inicial" {{--data-izimodal-subtitle=""--}} >
+    <p style="margin: 10px">
+        {!!$allhelp['25']->description!!}
+    </p>
+</div>
+
+<div id="modal-fixedCost" data-izimodal-loop="" data-izimodal-title="Custos Fixos" {{--data-izimodal-subtitle=""--}} >
+    <p style="margin: 10px">
+        {!!$allhelp['26']->description!!}
+    </p>
+</div>
+
+<div id="modal-variableCost" data-izimodal-loop="" data-izimodal-title="Custos Variáveis" {{--data-izimodal-subtitle=""--}} >
+    <p style="margin: 10px">
+        {!!$allhelp['27']->description!!}
+    </p>
+</div>
+
+<script>
+    $(document).on('click', '#sourcesRevenueId', function(event) {
+        event.preventDefault();
+        $('#modal-sourcesRevenue').iziModal('open');
+    });
+    $('#modal-sourcesRevenue').iziModal({
+        headerColor: '#00a65a',
+        width: '50%', //横幅
+        overlayColor: 'rgba(0, 0, 0, 0.5)',
+        fullscreen: false,
+    });
+
+    $(document).on('click', '#costStructureId', function(event) {
+        event.preventDefault();
+        $('#modal-costStructure').iziModal('open');
+    });
+    $('#modal-costStructure').iziModal({
+        headerColor: '#00a65a',
+        width: '50%', //横幅
+        overlayColor: 'rgba(0, 0, 0, 0.5)',
+        fullscreen: false,
+    });
+
+    $(document).on('click', '#initialInvestmentId', function(event) {
+        event.preventDefault();
+        $('#modal-initialInvestment').iziModal('open');
+    });
+    $('#modal-initialInvestment').iziModal({
+        headerColor: '#00a65a',
+        width: '50%', //横幅
+        overlayColor: 'rgba(0, 0, 0, 0.5)',
+        fullscreen: false,
+    });
+
+    $(document).on('click', '#fixedCostId', function(event) {
+        event.preventDefault();
+        $('#modal-fixedCost').iziModal('open');
+    });
+    $('#modal-fixedCost').iziModal({
+        headerColor: '#00a65a',
+        width: '50%', //横幅
+        overlayColor: 'rgba(0, 0, 0, 0.5)',
+        fullscreen: false,
+    });
+
+    $(document).on('click', '#variableCostId', function(event) {
+        event.preventDefault();
+        $('#modal-variableCost').iziModal('open');
+    });
+    $('#modal-variableCost').iziModal({
+        headerColor: '#00a65a',
+        width: '50%', //横幅
+        overlayColor: 'rgba(0, 0, 0, 0.5)',
+        fullscreen: false,
+    });
+</script>

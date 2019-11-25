@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BusinessPlan;
+use App\Models\Help;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +11,8 @@ class BusinessPlanController extends Controller
 {
     public function novoplano()
     {
-        return view('plano_de_negocio/novoplano');
+        $allhelp = Help::all();
+        return view('plano_de_negocio/novoplano', compact("allhelp"));
     }
 
     public function salvar(Request $request)

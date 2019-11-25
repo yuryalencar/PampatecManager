@@ -20,12 +20,12 @@
 
 <div id="modal-companyProject" data-izimodal-loop="" data-izimodal-title="Empresa/Projeto:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
-        Nome da Empresa ou do Projeto
+        {!!$allhelp['0']->description!!}
     </p>
 </div>
 <div id="modal-entrepreneursEmail" data-izimodal-loop="" data-izimodal-title="E-mail dos Empreendedores:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px;">
-        Informe o(s) e-mail(s) de quem está propondo o empreendimento:
+        {!!$allhelp['1']->description!!}
     </p>
 </div>
 

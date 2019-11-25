@@ -39,37 +39,31 @@
 
 <div id="modal-customerRelations" data-izimodal-loop="" hidden data-izimodal-title="Relações com clientes:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
-        Que tipo de relação esperam os diferentes segmentos de mercado? </br>Que tipo de relações temos estabelecido?
+        {!!$allhelp['6']->description!!}
     </p>
 </div>
 
 <div id="modal-keyPartnerships" data-izimodal-loop="" hidden data-izimodal-title="Parcerias Chave:" {{--data-izimodal-subtitle=""--}} >
-    <p style="margin: 10px">Quem são nossos parceiros chave?</br>
-        Que recursos chave adquirimos de nossos parceiros?
+    <p style="margin: 10px">
+        {!!$allhelp['6']->description!!}
     </p>
 </div>
 
 <div id="modal-channels" data-izimodal-loop="" hidden data-izimodal-title="Canais:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
-        Que canais preferem nossos segmentos de mercado? </br>
-        Como entregamos nossa proposta de valor ao cliente? </br>
-        Quais têm melhores resultados?
+        {!!$allhelp['7']->description!!}
     </p>
 </div>
 
 <div id="modal-mainFeatures" data-izimodal-loop="" hidden data-izimodal-title="Recursos Principais:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
-        Que recursos chave requerem nossas propostas de valor?</br>
-        Nossos canais de distribuição?</br>
-        Relações com clientes?</br>
-        Fontes de renda?
+        {!!$allhelp['8']->description!!}
     </p>
 </div>
 
 <div id="modal-competitors" data-izimodal-loop="" hidden data-izimodal-title="Concorrentes:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
-        Quem são nossos concorrentes?</br>
-        Como trabalham?
+        {!!$allhelp['9']->description!!}
     </p>
 </div>
 

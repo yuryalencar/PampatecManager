@@ -25,21 +25,20 @@
 {{--<button class="open-options button">options</button>--}}
 
 <div id="modal-customerSegment"  data-izimodal-loop="" data-izimodal-title="Segmento de Cliente:" {{--data-izimodal-subtitle=""--}} >
-    <p style="margin: 10px">Para quem criamos valor? </br>
-        Quais são os nossos clientes mais importantes?
+    <p style="margin: 10px">
+        {!!$allhelp['2']->description!!}
     </p>
 </div>
 
 <div id="modal-valueOffer" data-izimodal-loop="" hidden data-izimodal-title="Proposta de Valor:" >
-    <p style="margin: 10px">Que valor proporcionamos aos nossos clientes? </br>
-        Que problema de nossos clientes ajudamos a solucionar? </br>
-        Que pacotes de produtos ou serviços oferecemos a cada segmento de mercado?
+    <p style="margin: 10px">
+        {!!$allhelp['3']->description!!}
     </p>
 </div>
 
 <div id="modal-keyActivities" data-izimodal-loop="" hidden data-izimodal-title="Atividades Chave:">
-    <p style="margin: 10px">Que atividades chave requerem nossas propostas de valor?</br>
-        Nossos canais de distribuição?
+    <p style="margin: 10px">
+        {!!$allhelp['4']->description!!}
     </p>
 </div>
 
