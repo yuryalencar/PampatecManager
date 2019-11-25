@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Pampatec Manager</b>',
+    'logo' => '<b>Gerenciador PampaTec</b>',
 
-    'logo_mini' => '<b>P</b>M',
+    'logo_mini' => '<b>G</b>P',
 
     /*
     |--------------------------------------------------------------------------
