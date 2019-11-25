@@ -71,7 +71,6 @@
 
 
 
-
 <div id="modal-companyProject" data-izimodal-loop="" data-izimodal-title="Empresa/Projeto:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
         {!!$allhelp['0']->description!!}
