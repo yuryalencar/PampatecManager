@@ -1,29 +1,44 @@
-<h5 style="display: inline">Fontes de Receita</h5> <button style="display: inline" type="button" id="sourcesRevenueId" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
+<h5 style="display: inline">Fontes de Receita</h5>
+<button style="display: inline" type="button" id="sourcesRevenueId" class="btn btn-link pull-right"><i
+            class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 @if(isset($plano))
-    <textarea rows="5" type="text" id="sourcesRevenue" name="sourcesRevenue" placeholder="" class="form-control">{{$plano->sourcesRevenue}}</textarea>
+    <textarea rows="5" type="text" id="sourcesRevenue" name="sourcesRevenue" placeholder=""
+              class="form-control">{{$plano->sourcesRevenue}}</textarea>
 @else
-    <textarea rows="5" type="text" id="sourcesRevenue" name="sourcesRevenue" placeholder="" class="form-control"></textarea>
+    <textarea rows="5" type="text" id="sourcesRevenue" name="sourcesRevenue" placeholder=""
+              class="form-control"></textarea>
 @endif
 <br/>
 
-<h5 style="display: inline">Estrutura de Custo</h5> <button style="display: inline" type="button" id="costStructureId" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
+<h5 style="display: inline">Estrutura de Custo</h5>
+<button style="display: inline" type="button" id="costStructureId" class="btn btn-link pull-right"><i
+            class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 @if(isset($plano))
-    <textarea rows="5" type="text" id="costStructure" name="costStructure" placeholder="" class="form-control">{{$plano->costStructure}}</textarea>
+    <textarea rows="5" type="text" id="costStructure" name="costStructure" placeholder=""
+              class="form-control">{{$plano->costStructure}}</textarea>
 @else
-    <textarea rows="5" type="text" id="costStructure" name="costStructure" placeholder="" class="form-control"></textarea>
+    <textarea rows="5" type="text" id="costStructure" name="costStructure" placeholder=""
+              class="form-control"></textarea>
 @endif
 <br/>
 
-<h5 style="display: inline">Investimento Inicial</h5> <button style="display: inline" type="button" id="initialInvestmentId" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
+<h5 style="display: inline">Investimento Inicial</h5>
+<button style="display: inline" type="button" id="initialInvestmentId" class="btn btn-link pull-right"><i
+            class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 @if(isset($plano))
-    <textarea rows="5" type="text" id="initialInvestment" name="initialInvestment" placeholder="" class="form-control">{{$plano->initialInvestment}}</textarea>
+    <textarea rows="5" type="text" id="initialInvestment" name="initialInvestment" placeholder=""
+              class="form-control">{{$plano->initialInvestment}}</textarea>
 @else
-    <textarea rows="5" type="text" id="initialInvestment" name="initialInvestment" placeholder="" class="form-control"></textarea>
+    <textarea rows="5" type="text" id="initialInvestment" name="initialInvestment" placeholder=""
+              class="form-control"></textarea>
 @endif
 <br/>
 
-<h5 style="display: inline">Custos Fixos:</h5> <button style="display: inline" id="fixedCostId" type="button" class="btn btn-link"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
-<button type="button" onclick="adicionarCustoFixo()" class="btn btn-success pull-right" style="font-size: 75%"><i class="fa fa-plus" aria-hidden="true"></i></button>
+<h5 style="display: inline">Custos Fixos:</h5>
+<button style="display: inline" id="fixedCostId" type="button" class="btn btn-link"><i
+            class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
+<button type="button" onclick="adicionarCustoFixo()" class="btn btn-success pull-right" style="font-size: 75%"><i
+            class="fa fa-plus" aria-hidden="true"></i></button>
 @if(isset($plano))
     <table class="table table-bordered table-hover">
         <thead>
@@ -37,18 +52,18 @@
         </tbody>
     </table>
 @else
-<table id="custoFixoTable" class="table table-bordered table-hover">
-    <thead>
+    <table id="custoFixoTable" class="table table-bordered table-hover">
+        <thead>
         <tr>
             <th class="td-title">Descrição</th>
             <th class="td-title">Valor</th>
             <th class="td-title"></th>
         </tr>
-    </thead>
-    <tbody id="custoFixoBody">
-    </tbody>
-</table>
-
+        </thead>
+        <tbody id="custoFixoBody">
+        </tbody>
+    </table>
+@endif
 <script>
     var cont = 0;
 
@@ -62,7 +77,7 @@
         var cell3 = row.insertCell(2);
         cell1.innerHTML = "<input type=\"text\" name=\"test\" value=\"\" />";
         cell2.innerHTML = "R$ <input type=\"number\" step=\"0.01\" name=\"test\" value=\"\" />";
-        cell3.innerHTML = "<button type=\"button\" onclick=\"deletarCustoFixo("+cont+")\" class=\"btn btn-google\"><i class=\"fa fa-trash-o\"></i></button>";
+        cell3.innerHTML = "<button type=\"button\" onclick=\"deletarCustoFixo(" + cont + ")\" class=\"btn btn-google\"><i class=\"fa fa-trash-o\"></i></button>";
         cont++;
     }
 
@@ -70,11 +85,34 @@
         document.getElementById(id).remove();
     }
 </script>
-@endif
 
+<h5 style="display: inline">Custos Variáveis:</h5>
+<button style="display: inline" id="variableCostId" type="button" class="btn btn-link"><i
+            class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
+<button type="button" onclick="adicionarCustoVariavel()" class="btn btn-success pull-right" style="font-size: 75%"><i
+            class="fa fa-plus" aria-hidden="true"></i></button>
 
-<h5 style="display: inline">Custos Variáveis:</h5><button style="display: inline" id="variableCostId" type="button" class="btn btn-link"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
-<button type="button" onclick="adicionarCustoVariavel()" class="btn btn-success pull-right" style="font-size: 75%"><i class="fa fa-plus" aria-hidden="true"></i></button>
+<script>
+    var cont = 0;
+
+    function adicionarCustoVariavel() {
+        var table = document.getElementById("custoVariavelBody");
+
+        var row = table.insertRow(0);
+        row.setAttribute("id", cont);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        cell1.innerHTML = "<input type=\"text\" name=\"test\" value=\"\" />";
+        cell2.innerHTML = "R$ <input type=\"number\" step=\"0.01\" name=\"test\" value=\"\" />";
+        cell3.innerHTML = "<button type=\"button\" onclick=\"deletarCustoVariavel(" + cont + ")\" class=\"btn btn-google\"><i class=\"fa fa-trash-o\"></i></button>";
+        cont++;
+    }
+
+    function deletarCustoVariavel(id) {
+        document.getElementById(id).remove();
+    }
+</script>
 @if(isset($plano))
     <table id="custoVariavelTable" class="table table-bordered table-hover">
         <thead>
@@ -99,43 +137,25 @@
         <tbody id="custoVariavelBody">
         </tbody>
     </table>
-
-    <script>
-        var cont = 0;
-
-        function adicionarCustoVariavel() {
-            var table = document.getElementById("custoVariavelBody");
-
-            var row = table.insertRow(0);
-            row.setAttribute("id", cont);
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
-            cell1.innerHTML = "<input type=\"text\" name=\"test\" value=\"\" />";
-            cell2.innerHTML = "R$ <input type=\"number\" step=\"0.01\" name=\"test\" value=\"\" />";
-            cell3.innerHTML = "<button type=\"button\" onclick=\"deletarCustoVariavel("+cont+")\" class=\"btn btn-google\"><i class=\"fa fa-trash-o\"></i></button>";
-            cont++;
-        }
-
-        function deletarCustoVariavel(id) {
-            document.getElementById(id).remove();
-        }
-    </script>
 @endif
 
-<div id="modal-sourcesRevenue" data-izimodal-loop="" data-izimodal-title="Fonte de Receita" {{--data-izimodal-subtitle=""--}} >
+
+<div id="modal-sourcesRevenue" data-izimodal-loop=""
+     data-izimodal-title="Fonte de Receita" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
         {!!$allhelp['23']->description!!}
     </p>
 </div>
 
-<div id="modal-costStructure" data-izimodal-loop="" data-izimodal-title="Estrutura de Custo" {{--data-izimodal-subtitle=""--}} >
+<div id="modal-costStructure" data-izimodal-loop=""
+     data-izimodal-title="Estrutura de Custo" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
         {!!$allhelp['24']->description!!}
     </p>
 </div>
 
-<div id="modal-initialInvestment" data-izimodal-loop="" data-izimodal-title="Investimento Inicial" {{--data-izimodal-subtitle=""--}} >
+<div id="modal-initialInvestment" data-izimodal-loop=""
+     data-izimodal-title="Investimento Inicial" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
         {!!$allhelp['25']->description!!}
     </p>
@@ -147,14 +167,15 @@
     </p>
 </div>
 
-<div id="modal-variableCost" data-izimodal-loop="" data-izimodal-title="Custos Variáveis" {{--data-izimodal-subtitle=""--}} >
+<div id="modal-variableCost" data-izimodal-loop=""
+     data-izimodal-title="Custos Variáveis" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
         {!!$allhelp['27']->description!!}
     </p>
 </div>
 
 <script>
-    $(document).on('click', '#sourcesRevenueId', function(event) {
+    $(document).on('click', '#sourcesRevenueId', function (event) {
         event.preventDefault();
         $('#modal-sourcesRevenue').iziModal('open');
     });
@@ -165,7 +186,7 @@
         fullscreen: false,
     });
 
-    $(document).on('click', '#costStructureId', function(event) {
+    $(document).on('click', '#costStructureId', function (event) {
         event.preventDefault();
         $('#modal-costStructure').iziModal('open');
     });
@@ -176,7 +197,7 @@
         fullscreen: false,
     });
 
-    $(document).on('click', '#initialInvestmentId', function(event) {
+    $(document).on('click', '#initialInvestmentId', function (event) {
         event.preventDefault();
         $('#modal-initialInvestment').iziModal('open');
     });
@@ -187,7 +208,7 @@
         fullscreen: false,
     });
 
-    $(document).on('click', '#fixedCostId', function(event) {
+    $(document).on('click', '#fixedCostId', function (event) {
         event.preventDefault();
         $('#modal-fixedCost').iziModal('open');
     });
@@ -198,7 +219,7 @@
         fullscreen: false,
     });
 
-    $(document).on('click', '#variableCostId', function(event) {
+    $(document).on('click', '#variableCostId', function (event) {
         event.preventDefault();
         $('#modal-variableCost').iziModal('open');
     });
