@@ -19,7 +19,7 @@ class CreateCostsTable extends Migration
             $table->double('value')->nullable();
             $table->boolean('is_fixed')->nullable();
             $table->boolean('is_variable')->nullable();
-            $table->integer('business_plan_id')->unsigned();
+            $table->integer('business_plan_id')->unsigned()->nullable();
             $table->foreign('business_plan_id')->references('id')->on('business_plan')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

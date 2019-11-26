@@ -24,4 +24,10 @@ class BusinessPlan extends Model
         return $this->belongsToMany(User::class, 'user_business_plan');
     }
 
+    public function costs()
+    {
+        return $this->hasMany(Cost::class);
+    }
+
+
 }

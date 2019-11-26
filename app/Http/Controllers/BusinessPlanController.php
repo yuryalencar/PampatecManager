@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Mail\SendMailInvitedUser;
 use App\Models\BusinessPlan;
+use App\Models\Cost;
 use App\Models\Help;
 use App\Models\Role;
 use App\Models\User;
@@ -30,11 +31,35 @@ class BusinessPlanController extends Controller
 
     public function store(Request $request)
     {
-        $dataToStore = $request->except('_token', 'entrepreneursEmail', 'emails');
+        $dataToStore = $request->except('_token', 'entrepreneursEmail', 'emails', 'fixedCost', 'variableCost');
+
+        $fixedCost = $request->fixedCost;
+        $variableCost = $request->variableCost;
+
         DB::beginTransaction();
 
         try {
             $result = BusinessPlan::create($dataToStore);
+
+            if (isset($fixedCost)) {
+                foreach ($fixedCost as $cost) {
+                    $cost['is_fixed'] = 1;
+                    $cost['is_variable'] = 0;
+                    $cost['business_plan_id'] = $result->id;
+
+                    Cost::create($cost);
+                }
+            }
+            if (isset($variableCost)) {
+                foreach ($variableCost as $cost) {
+                    $cost['is_fixed'] = 0;
+                    $cost['is_variable'] = 1;
+                    $cost['business_plan_id'] = $result->id;
+
+                    Cost::create($cost);
+                }
+            }
+
             if (isset($request->emails)) {
                 foreach ($request->emails as $email) {
                     try {
@@ -58,6 +83,7 @@ class BusinessPlanController extends Controller
                             }
                         }
                     } catch (\Exception $exception) {
+
                     }
                 }
             }
@@ -87,7 +113,10 @@ class BusinessPlanController extends Controller
 
     public function update(Request $request)
     {
-        $dataToStore = $request->except('_token', 'entrepreneursEmail', 'emails');
+        $dataToStore = $request->except('_token', 'entrepreneursEmail', 'emails', 'fixedCost', 'variableCost');
+        $fixedCost = $request->fixedCost;
+        $variableCost = $request->variableCost;
+
         DB::beginTransaction();
 
         try {
@@ -95,6 +124,28 @@ class BusinessPlanController extends Controller
             $plan = BusinessPlan::where('id', $request->id)->first();
             $users = $plan->users;
             $plan->users()->detach();
+
+            DB::table('costs')->where('business_plan_id', $plan->id)->delete();
+
+            if (isset($fixedCost)) {
+
+                foreach ($fixedCost as $cost) {
+                    $cost['is_fixed'] = 1;
+                    $cost['is_variable'] = 0;
+                    $cost['business_plan_id'] = $plan->id;
+
+                    Cost::create($cost);
+                }
+            }
+            if (isset($variableCost)) {
+                foreach ($variableCost as $cost) {
+                    $cost['is_fixed'] = 0;
+                    $cost['is_variable'] = 1;
+                    $cost['business_plan_id'] = $plan->id;
+
+                    Cost::create($cost);
+                }
+            }
 
             if (isset($request->emails)) {
                 foreach ($request->emails as $email) {
@@ -105,8 +156,8 @@ class BusinessPlanController extends Controller
                             if (isset($user)) {
                                 $user->plans()->attach($plan);
                                 $inProject = false;
-                                foreach ($users  as $userOld) {
-                                    if($user->email === $userOld->email){
+                                foreach ($users as $userOld) {
+                                    if ($user->email === $userOld->email) {
                                         $inProject = true;
                                     }
                                 }

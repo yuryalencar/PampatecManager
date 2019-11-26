@@ -49,6 +49,24 @@
         </tr>
         </thead>
         <tbody id="custoFixoBody">
+        <p hidden>{{$count = 0}}</p>
+        @foreach($plano->costs as $cost)
+            @if($cost->is_fixed)
+                <tr id="fixed-{{$count}}">
+                    <td><input type="text" name="fixedCost[{{$count}}][description]" value="{{$cost->description}}"/>
+                    </td>
+                    <td>
+                        R$ <input type="number" step="0.01" name="fixedCost[{{$count}}][value]"
+                                  value="{{$cost->value}}"/>
+                    </td>
+                    <td>
+                        <button type="button" onclick="deletarCustoFixo('fixed-{{$count}}')" class="btn btn-google"><i
+                                    class="fa fa-trash-o"></i></button>
+                    </td>
+                </tr>
+                <p hidden>{{$count++}}</p>
+            @endif
+        @endforeach
         </tbody>
     </table>
 @else
@@ -65,7 +83,7 @@
     </table>
 @endif
 <script>
-    var cont = 0;
+    var cont = {{isset($plano) ? count($plano->costs) + 1 : 0}};
 
     function adicionarCustoFixo() {
         var table = document.getElementById("custoFixoBody");
@@ -75,8 +93,8 @@
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
-        cell1.innerHTML = "<input type=\"text\" name=\"test\" value=\"\" />";
-        cell2.innerHTML = "R$ <input type=\"number\" step=\"0.01\" name=\"test\" value=\"\" />";
+        cell1.innerHTML = "<input type=\"text\" name=\"fixedCost[" + cont + "][description]\" value=\"\" />";
+        cell2.innerHTML = "R$ <input type=\"number\" step=\"0.01\" name=\"fixedCost[" + cont + "][value]\" value=\"\" />";
         cell3.innerHTML = "<button type=\"button\" onclick=\"deletarCustoFixo(" + cont + ")\" class=\"btn btn-google\"><i class=\"fa fa-trash-o\"></i></button>";
         cont++;
     }
@@ -93,7 +111,7 @@
             class="fa fa-plus" aria-hidden="true"></i></button>
 
 <script>
-    var cont = 0;
+    var cont = {{isset($plano) ? count($plano->costs) + 1 : 0}};
 
     function adicionarCustoVariavel() {
         var table = document.getElementById("custoVariavelBody");
@@ -103,8 +121,8 @@
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
-        cell1.innerHTML = "<input type=\"text\" name=\"test\" value=\"\" />";
-        cell2.innerHTML = "R$ <input type=\"number\" step=\"0.01\" name=\"test\" value=\"\" />";
+        cell1.innerHTML = "<input type=\"text\" name=\"variableCost[" + cont + "][description]\" value=\"\" />";
+        cell2.innerHTML = "R$ <input type=\"number\" step=\"0.01\" name=\"variableCost[" + cont + "][value]\" value=\"\" />";
         cell3.innerHTML = "<button type=\"button\" onclick=\"deletarCustoVariavel(" + cont + ")\" class=\"btn btn-google\"><i class=\"fa fa-trash-o\"></i></button>";
         cont++;
     }
@@ -123,6 +141,25 @@
         </tr>
         </thead>
         <tbody id="custoVariavelBody">
+        <p hidden>{{$count = 0}}</p>
+        @foreach($plano->costs as $cost)
+            @if($cost->is_variable)
+                <tr id="variable-{{$count}}">
+                    <td><input type="text" name="variableCost[{{$count}}][description]" value="{{$cost->description}}"/>
+                    </td>
+                    <td>
+                        R$ <input type="number" step="0.01" name="variableCost[{{$count}}][value]"
+                                  value="{{$cost->value}}"/>
+                    </td>
+                    <td>
+                        <button type="button" onclick="deletarCustoVariavel('variable-{{$count}}')" class="btn btn-google"><i
+                                    class="fa fa-trash-o"></i></button>
+                    </td>
+                </tr>
+                <p hidden>{{$count++}}</p>
+            @endif
+        @endforeach
+
         </tbody>
     </table>
 @else
