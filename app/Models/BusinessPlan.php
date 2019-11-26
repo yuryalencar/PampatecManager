@@ -11,12 +11,17 @@ class BusinessPlan extends Model
 
     protected $dates = ['deleted_at'];
     protected $table = 'business_plan';
-        protected $fillable =[
-            'owner_id', 'status',  'customerSegment', 'valueOffer', 'keyActivities', 'entrepreneursEmail', 'companyProject',
+    protected $fillable = [
+        'owner_id', 'status', 'customerSegment', 'valueOffer', 'keyActivities', 'entrepreneursEmail', 'companyProject',
         'customerRelations', 'keyPartnerships', 'channels', 'mainFeatures', 'competitors', 'formationPartners',
-        'experiencePartners','competencePartners','equityInterest','potentialEmplymentIncome','stageEvolution',
-        'technologyProcesses','innovationPotential','application','expectedDifficulties','businessUniversity',
+        'experiencePartners', 'competencePartners', 'equityInterest', 'potentialEmplymentIncome', 'stageEvolution',
+        'technologyProcesses', 'innovationPotential', 'application', 'expectedDifficulties', 'businessUniversity',
         'enterpriseCommunityGovernment', 'infrastructure',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_business_plan');
+    }
 
 }

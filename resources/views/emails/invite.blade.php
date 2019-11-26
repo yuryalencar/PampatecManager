@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Convidar Empreendedor</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -66,11 +66,13 @@
 </head>
 <body>
 <div class="flex-center">
-    <h2>Você foi convidado para fazer parte de um plano de Negócio !</h2>
+    <h2>Você foi convidado para fazer parte de um plano de Negócio !</h2> <br/>
 </div>
 <div class="flex-center position-ref full-height">
     <h5>Esta é seu e-mail: {{$user->email}}</h5>
+    <br/>
     <h5>Esta é sua senha de acesso: {{$password}}</h5>
+    <br/>
 
     <h5>Acesse o Gerenciador Pampatec através do link: <a href="{{url('/')}}">Link do Gerenciador Pampatec</a></h5>
 </div>

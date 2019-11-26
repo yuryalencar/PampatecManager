@@ -35,16 +35,16 @@ class BusinessPlanController extends Controller
 
         try {
             $result = BusinessPlan::create($dataToStore);
-            if(isset($request->emails)) {
+            if (isset($request->emails)) {
                 foreach ($request->emails as $email) {
                     try {
                         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                            $password = substr(md5(microtime()), 1, rand(8, 12));
                             $user = User::where('email', $email)->first();
                             if (isset($user)) {
                                 $user->plans()->attach($result);
+                                Mail::to($user->email)->send(new SendMailInvitedUser($user, 'Sua própria senha'));
                             } else {
-                                $password = substr(md5(microtime()), 1, rand(8, 12));
-
                                 $user = new User();
                                 $user->password = bcrypt($password);
                                 $user->name = "Empreendedor Convidado";
@@ -54,9 +54,7 @@ class BusinessPlanController extends Controller
 
                                 $user->roles()->attach(Role::getEntrepreneur());
                                 $user->plans()->attach($result);
-
                                 Mail::to($user->email)->send(new SendMailInvitedUser($user, $password));
-
                             }
                         }
                     } catch (\Exception $exception) {
@@ -72,7 +70,6 @@ class BusinessPlanController extends Controller
         }
 
         DB::commit();
-//        return($password);
         if ($result) {
             return Helper::throwSuccess(Helper::msg("store"), redirect()->route('listar.plano'));
         } else {
@@ -84,16 +81,56 @@ class BusinessPlanController extends Controller
     {
         $allhelp = Help::all();
         $plano = BusinessPlan::where('id', $id)->first();
-        return view('plano_de_negocio/novoplano', compact('plano', 'allhelp'));
+        $users = $plano->users;
+        return view('plano_de_negocio/novoplano', compact('plano', 'allhelp', 'users'));
     }
 
     public function update(Request $request)
     {
-        $dataToStore = $request->except('_token', 'entrepreneursEmail');
+        $dataToStore = $request->except('_token', 'entrepreneursEmail', 'emails');
         DB::beginTransaction();
 
         try {
             $result = BusinessPlan::where('id', $request->id)->first()->update($dataToStore);
+            $plan = BusinessPlan::where('id', $request->id)->first();
+            $users = $plan->users;
+            $plan->users()->detach();
+
+            if (isset($request->emails)) {
+                foreach ($request->emails as $email) {
+                    try {
+                        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                            $password = substr(md5(microtime()), 1, rand(8, 12));
+                            $user = User::where('email', $email)->first();
+                            if (isset($user)) {
+                                $user->plans()->attach($plan);
+                                $inProject = false;
+                                foreach ($users  as $userOld) {
+                                    if($user->email === $userOld->email){
+                                        $inProject = true;
+                                    }
+                                }
+
+                                if ($inProject == false) {
+                                    Mail::to($user->email)->send(new SendMailInvitedUser($user, 'Sua própria senha'));
+                                }
+                            } else {
+                                $user = new User();
+                                $user->password = bcrypt($password);
+                                $user->name = "Empreendedor Convidado";
+                                $user->email = "$email";
+
+                                $user->save();
+
+                                $user->roles()->attach(Role::getEntrepreneur());
+                                $user->plans()->attach($plan);
+                                Mail::to($user->email)->send(new SendMailInvitedUser($user, $password));
+                            }
+                        }
+                    } catch (\Exception $exception) {
+                    }
+                }
+            }
         } catch (\Exception $e) {
             DB::rollback();
             return Helper::throwError(Helper::msg("error.update"));

@@ -1,8 +1,10 @@
 <h5 style="display: inline">Empresa/Projeto: *</h5>
-<button style="display: inline" type="button" class="btn btn-link pull-right" id="companyProjectId"><i class="fa fa-question-circle fa-lg"
-                                                                                 aria-hidden="true"></i></button>
+<button style="display: inline" type="button" class="btn btn-link pull-right" id="companyProjectId"><i
+            class="fa fa-question-circle fa-lg"
+            aria-hidden="true"></i></button>
 @if(isset($plano))
-    <input type="text" id="companyProject" name="companyProject" placeholder="" class="form-control" value="{{$plano->companyProject}}">
+    <input type="text" id="companyProject" name="companyProject" placeholder="" class="form-control"
+           value="{{$plano->companyProject}}">
 @else
     <input type="text" id="companyProject" name="companyProject" placeholder="" class="form-control">
 @endif
@@ -10,19 +12,27 @@
 <br/>
 
 <h5 style="display: inline">E-mail dos Empreendedores: </h5>
-<button style="display: inline" id="entrepreneursEmailId" type="button" class="btn btn-link"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
+<button style="display: inline" id="entrepreneursEmailId" type="button" class="btn btn-link"><i
+            class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 
-<div id="inputshere"></div>
+<div id="inputshere">
+    @if(isset($plano))
+        <p hidden>{{$count = 0}}</p>
+        @foreach($users as $user)
+            <input hidden value="{{$user->email}}" id="email-{{$count}}" name="emails[]"/>
+            <p hidden>{{$count++}}</p>
+        @endforeach
+    @endif
+</div>
 
-<br/>
-
-<table class="table" >
+<table class="table">
     <tr style="background: white">
         <td>
             <input type="email" id="email" placeholder="Insira o e-mail" class="form-control"/>
         </td>
         <td>
-            <button type="button" onclick="adicionarEmail()" class="btn btn-success pull-right" style="font-size: 75%"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            <button type="button" onclick="adicionarEmail()" class="btn btn-success pull-right" style="font-size: 75%">
+                <i class="fa fa-plus" aria-hidden="true"></i></button>
         </td>
     </tr>
 </table>
@@ -31,8 +41,17 @@
 @if(isset($plano))
     <table class="table table-bordered table-hover">
         <tbody id="emailBody">
-        <tr>
-        </tr>
+        <p hidden>{{$count = 0}}</p>
+        @foreach($users as $user)
+            <tr id="{{$count}}">
+                <td>{{$user->email}}</td>
+                <td>
+                    <button type="button" onclick="deletarEmail({{$count}})" class="btn btn-google"><i
+                                class="fa fa-trash-o"></i></button>
+                </td>
+            </tr>
+            <p hidden>{{$count++}}</p>
+        @endforeach
         </tbody>
     </table>
 @else
@@ -42,48 +61,54 @@
     </table>
 @endif
 <script>
-    var cont = 0;
+    var cont = {{isset($users) ? count($users) + 1 : 0}};
+
     function adicionarEmail() {
-        if(document.getElementById("email").value != ""){
+        if (document.getElementById("email").value != "") {
             var table = document.getElementById("emailBody");
             var row = table.insertRow(0);
             row.setAttribute("id", cont);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
             var input = document.createElement('input');
-            input.setAttribute('name',"emails[]");
-            input.setAttribute('value',  document.getElementById('email').value);
+            input.setAttribute('name', "emails[]");
+            input.setAttribute('value', document.getElementById('email').value);
             input.setAttribute('hidden', 'true');
+            input.setAttribute('id', 'email-'+cont);
 
             document.getElementById('inputshere').appendChild(input);
             cell1.innerHTML = input.getAttribute('value');
-            cell2.innerHTML = "<button type=\"button\" onclick=\"deletarEmail("+cont+")\" class=\"btn btn-google\"><i class=\"fa fa-trash-o\"></i></button>";
+            cell2.innerHTML = "<button type=\"button\" onclick=\"deletarEmail(" + cont + ")\" class=\"btn btn-google\"><i class=\"fa fa-trash-o\"></i></button>";
             cont++;
 
             document.getElementById("email").value = "";
         }
 
     }
+
     function deletarEmail(id) {
         document.getElementById(id).remove();
+        idElementHidden = 'email-' + id.toString();
+        document.getElementById(idElementHidden).remove();
     }
 </script>
 
 
-
-<div id="modal-companyProject" data-izimodal-loop="" data-izimodal-title="Empresa/Projeto:" {{--data-izimodal-subtitle=""--}} >
+<div id="modal-companyProject" data-izimodal-loop=""
+     data-izimodal-title="Empresa/Projeto:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px">
         {!!$allhelp['0']->description!!}
     </p>
 </div>
-<div id="modal-entrepreneursEmail" data-izimodal-loop="" data-izimodal-title="E-mail dos Empreendedores:" {{--data-izimodal-subtitle=""--}} >
+<div id="modal-entrepreneursEmail" data-izimodal-loop=""
+     data-izimodal-title="E-mail dos Empreendedores:" {{--data-izimodal-subtitle=""--}} >
     <p style="margin: 10px;">
         {!!$allhelp['1']->description!!}
     </p>
 </div>
 
 <script>
-    $(document).on('click', '#companyProjectId', function(event) {
+    $(document).on('click', '#companyProjectId', function (event) {
         event.preventDefault();
         $('#modal-companyProject').iziModal('open');
     });
@@ -93,7 +118,7 @@
         overlayColor: 'rgba(0, 0, 0, 0.5)',
         fullscreen: false,
     });
-    $(document).on('click', '#entrepreneursEmailId', function(event) {
+    $(document).on('click', '#entrepreneursEmailId', function (event) {
         event.preventDefault();
         $('#modal-entrepreneursEmail').iziModal('open');
     });
