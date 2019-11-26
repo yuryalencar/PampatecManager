@@ -16,7 +16,7 @@ class BusinessPlan extends Model
         'customerRelations', 'keyPartnerships', 'channels', 'mainFeatures', 'competitors', 'formationPartners',
         'experiencePartners', 'competencePartners', 'equityInterest', 'potentialEmplymentIncome', 'stageEvolution',
         'technologyProcesses', 'innovationPotential', 'application', 'expectedDifficulties', 'businessUniversity',
-        'enterpriseCommunityGovernment', 'infrastructure',
+        'enterpriseCommunityGovernment', 'infrastructure','initialInvestment', 'costStructure', 'sourcesRevenue'
     ];
 
     public function users()

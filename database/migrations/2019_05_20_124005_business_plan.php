@@ -55,7 +55,7 @@ class BusinessPlan extends Migration
             $table->longText('infrastructure')->nullable();
 
             // Financial Plan
-            $table->longText('revenueSources')->nullable();
+            $table->longText('sourcesRevenue')->nullable();
             $table->longText('costStructure')->nullable();
             $table->longText('initialInvestment')->nullable();
 

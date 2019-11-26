@@ -61,15 +61,15 @@
 
     <script>
 
-        document.getElementById('navContact').style.color = 'red';
-        document.getElementById('navBusiness').style.color = 'red';
-        document.getElementById('navFinancialPlan').style.color = 'red';
-        document.getElementById('navMarketAnalysis').style.color = 'red';
-        document.getElementById('navPeopleManagement').style.color = 'red';
-        document.getElementById('navProductServer').style.color = 'red';
-
         window.onload = enableContact();
         ButtonSubmeter();
+
+        ChangeColor("navContact");
+        ChangeColor("navBusiness");
+        ChangeColor("navMarketAnalysis");
+        ChangeColor("navPeopleManagement");
+        ChangeColor("navProductServer");
+        ChangeColor("navFinancialPlan");
 
         function disableAll() {
             document.getElementById('contact').setAttribute('hidden', 'true');
@@ -132,7 +132,6 @@
             //Contacts
             document.getElementById("companyProject").onchange = function() {ChangeColor("navContact"); ButtonSubmeter();};
             //document.getElementById("entrepreneursEmail").onchange = function() {ChangeColor("navContact"); ButtonSubmeter();};
-
             //CompletOrNotBusiness();
             document.getElementById("customerSegment").onchange = function() {ChangeColor("navBusiness"); ButtonSubmeter();};
             document.getElementById("valueOffer").onchange = function() {ChangeColor("navBusiness"); ButtonSubmeter();};

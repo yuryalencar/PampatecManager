@@ -183,6 +183,7 @@ class BusinessPlanController extends Controller
                 }
             }
         } catch (\Exception $e) {
+            return $e;
             DB::rollback();
             return Helper::throwError(Helper::msg("error.update"));
         } catch (\Error $e) {
