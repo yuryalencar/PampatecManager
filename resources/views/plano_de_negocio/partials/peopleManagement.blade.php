@@ -33,7 +33,7 @@
 
 <h5 style="display: inline">Potencial de Geração de Emprego e Renda:</h5> <button style="display: inline" type="button" id="potentialEmplymentIncomeId" class="btn btn-link pull-right"><i class="fa fa-question-circle fa-lg" aria-hidden="true"></i></button>
 @if(isset($plano))
-    <textarea rows="5" type="text" id="potentialEmplymentIncome" name="potentialEmplymentIncome" placeholder="" class="form-control" value="{{$plano->potentialEmplymentIncome}}"></textarea>
+    <textarea rows="5" type="text" id="potentialEmplymentIncome" name="potentialEmplymentIncome" placeholder="" class="form-control">{{$plano->potentialEmplymentIncome}}</textarea>
 @else
     <textarea rows="5" type="text" id="potentialEmplymentIncome" name="potentialEmplymentIncome" placeholder="" class="form-control"></textarea>
 @endif
